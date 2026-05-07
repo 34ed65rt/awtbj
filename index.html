@@ -562,11 +562,11 @@
         </div>
     </div>
 
-    <!-- 游戏推荐区: 全盘传说专属下载引导卡片 -->
+    <!-- 游戏推荐区: 全盘传说 + 海洋竞技 (原合金弹头X改造) -->
     <div class="section-title">✨ 热门街机精选 ✨</div>
-    <div class="section-sub">点击卡片或「立即试玩」畅玩经典 | 全盘传说专属下载通道</div>
+    <div class="section-sub">点击卡片或「立即试玩」开启热血体验 | 海洋竞技全新上线</div>
     <div class="games-grid" id="gamesGrid">
-        <!-- 游戏卡片 1 - 全盘传说下载引导（原街头霸王位置） -->
+        <!-- 游戏卡片 1 - 全盘传说下载引导 -->
         <div class="game-card" data-game="全盘传说" id="specialDownloadCard">
             <div class="game-icon"><i class="fas fa-dragon"></i></div>
             <h3>全盘传说 · 终极觉醒</h3>
@@ -574,13 +574,17 @@
             <span class="game-tag">🔥 重磅推荐 · 全平台下载</span>
             <button class="play-btn" id="specialDownloadBtn"><i class="fas fa-arrow-down"></i> 下载 全盘传说.apk.1</button>
         </div>
-        <div class="game-card" data-game="合金弹头X">
-            <div class="game-icon"><i class="fas fa-bomb"></i></div>
-            <h3>合金弹头X</h3>
-            <p>横版射击爽快突突突，驾驶坦克与叛军激战！</p>
-            <span class="game-tag">射击 · 闯关</span>
-            <button class="play-btn game-play">⚡ 立即试玩</button>
+        
+        <!-- 游戏卡片 2 - 改造为【海洋竞技】，按钮跳转 https://app.gxgenda.cn/dw -->
+        <div class="game-card" data-game="海洋竞技" id="oceanGameCard">
+            <div class="game-icon"><i class="fas fa-water"></i></div>
+            <h3>海洋竞技 · 激浪对决</h3>
+            <p>深海竞速+街机格斗，驾驭海兽，释放浪潮技能，与全球玩家展开水上大乱斗！</p>
+            <span class="game-tag">竞技 · 海洋</span>
+            <button class="play-btn" id="oceanGameBtn">🏄 立即挑战海洋之巅</button>
         </div>
+        
+        <!-- 其他卡片保持不变 -->
         <div class="game-card" data-game="拳皇'97">
             <div class="game-icon"><i class="fas fa-users"></i></div>
             <h3>拳皇'97</h3>
@@ -624,6 +628,13 @@
             <span>爱玩推币机群：</span>
             <small>1055102055</small>
             <i class="fas fa-copy" style="font-size: 12px; opacity: 0.7;"></i>
+        </div>
+        <div>
+            <button id="downloadApkBtn" class="download-apk-btn">
+                <i class="fas fa-download"></i> 下载 全盘传说.apk.1
+                <i class="fas fa-mobile-alt"></i>
+            </button>
+            <div class="group-hint" style="margin-top: 8px;">📦 点击跳转官方下载页 | 安全高速</div>
         </div>
     </div>
 
@@ -701,19 +712,17 @@
 
     // 推币机群点击复制
     const groupItem = document.getElementById('groupQQItem');
-    if(groupItem) groupItem.addEventListener('click', () => copyToClipboard('1055102055', '🎮 爱玩推币机游戏群 1055102055 已复制，打开QQ加入一起推币！'));
+    if(groupItem) groupItem.addEventListener('click', () => copyToClipboard('1055102055', '🎮 爱玩推币机群号 1055102055 已复制，打开QQ加入一起推币！'));
 
     // --------------------------------------------------------------
-    // 【核心修改】所有下载按钮统一打开网页 https://download.ttl718.com/
+    // 【全局下载跳转】所有下载按钮统一打开网页 https://download.ttl718.com/
     const DOWNLOAD_REDIRECT_URL = 'https://download.ttl718.com/';
-    
     function redirectToDownloadPage(clickSource = '') {
-        // 在新标签页打开下载网页
         window.open(DOWNLOAD_REDIRECT_URL, '_blank');
         showMessage(`🚀 正在打开官方下载页，获取「全盘传说」客户端...${clickSource ? ' ('+clickSource+')' : ''}`, false);
     }
 
-    // 1. 底部独立下载按钮：跳转下载页
+    // 1. 底部独立下载按钮跳转
     const bottomDownloadBtn = document.getElementById('downloadApkBtn');
     if(bottomDownloadBtn) {
         bottomDownloadBtn.addEventListener('click', (e) => {
@@ -730,14 +739,37 @@
             redirectToDownloadPage('全盘传说卡片按钮');
         });
     }
-    
-    // 3. 全盘传说卡片整体点击也可跳转下载页（避免与内部按钮重复触发）
+    // 全盘传说卡片整体点击跳转下载页
     const specialCard = document.getElementById('specialDownloadCard');
     if(specialCard) {
         specialCard.addEventListener('click', (e) => {
-            // 如果点击的目标是按钮本身或按钮内部，已经在上方处理，这里不再重复触发
             if(e.target === specialCardBtn || specialCardBtn.contains(e.target)) return;
             redirectToDownloadPage('全盘传说卡片区域');
+        });
+    }
+    // --------------------------------------------------------------
+    
+    // --------------------------------------------------------------
+    // 【海洋竞技】板块：点击按钮 / 卡片 跳转至 https://app.gxgenda.cn/dw
+    const OCEAN_REDIRECT_URL = 'https://app.gxgenda.cn/dw';
+    function redirectToOceanGame() {
+        window.open(OCEAN_REDIRECT_URL, '_blank');
+        showMessage(`🌊 正在前往「海洋竞技」特约入口，激浪对决等你挑战！`, false);
+    }
+    
+    const oceanBtn = document.getElementById('oceanGameBtn');
+    const oceanCard = document.getElementById('oceanGameCard');
+    if(oceanBtn) {
+        oceanBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            redirectToOceanGame();
+        });
+    }
+    if(oceanCard) {
+        oceanCard.addEventListener('click', (e) => {
+            // 避免点击按钮时重复触发
+            if(e.target === oceanBtn || oceanBtn.contains(e.target)) return;
+            redirectToOceanGame();
         });
     }
     // --------------------------------------------------------------
@@ -764,7 +796,7 @@
         if (counterSpan) counterSpan.innerText = onlinePeople;
     }, 6200);
 
-    // 其他游戏试玩模拟 (全盘传说之外的卡片模拟游戏)
+    // 其他游戏试玩模拟 (拳皇、恐龙快打、雷电、吃豆人)
     function handlePlayGame(gameName) {
         showMessage(`🎮 正在跳转至「${gameName}」游戏大厅，街机模拟器加载中... 稍后即可开玩！`);
     }
@@ -772,17 +804,21 @@
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
             const card = btn.closest('.game-card');
-            const gameTitle = card?.getAttribute('data-game') || card?.querySelector('h3')?.innerText;
-            if(gameTitle && gameTitle !== '全盘传说') handlePlayGame(gameTitle);
+            const gameTitle = card?.getAttribute('data-game');
+            if(gameTitle && gameTitle !== '全盘传说' && gameTitle !== '海洋竞技') {
+                handlePlayGame(gameTitle);
+            }
         });
     });
-    // 其他卡片点击试玩，排除全盘传说卡片（已做下载跳转）
-    document.querySelectorAll('.game-card:not(#specialDownloadCard)').forEach(card => {
-        card.addEventListener('click', (e) => {
-            if (e.target.classList.contains('play-btn')) return;
-            const game = card.getAttribute('data-game') || card.querySelector('h3')?.innerText;
-            if(game) handlePlayGame(game);
-        });
+    // 非全盘传说、非海洋竞技的其他卡片点击试玩
+    document.querySelectorAll('.game-card').forEach(card => {
+        const gameName = card.getAttribute('data-game');
+        if(gameName !== '全盘传说' && gameName !== '海洋竞技') {
+            card.addEventListener('click', (e) => {
+                if (e.target.classList.contains('play-btn')) return;
+                if(gameName) handlePlayGame(gameName);
+            });
+        }
     });
 
     // 主要按钮交互
@@ -813,8 +849,4 @@
     if(navHome) navHome.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); showMessage("🏠 回到首页，街机欢乐不间断！"); });
     if(navGames) navGames.addEventListener('click', (e) => { e.preventDefault(); document.getElementById('gamesGrid')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); showMessage("🎮 挑选你心仪的街机游戏，即刻开战"); });
     if(navEvent) navEvent.addEventListener('click', (e) => { e.preventDefault(); document.querySelector('.arcade-feature')?.scrollIntoView({ behavior: 'smooth' }); showMessage("⚡ 精彩赛事与高分挑战，丰厚奖励等你捧走"); });
-    if(navJoin) navJoin.addEventListener('click', (e) => { e.preventDefault(); document.querySelector('.newsletter')?.scrollIntoView({ behavior: 'smooth' }); showMessage("👑 会员中心即将开启，专属特权+限定皮肤"); });
-</script>
-
-</body>
-</html>
+    if(navJoin) navJoin.addEventListener('click', (e) => { e.preventDefault(); document.querySelector('.newsletter')?.scrollIntoView
