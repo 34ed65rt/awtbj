@@ -570,7 +570,7 @@
         <div class="game-card" data-game="全盘传说" id="specialDownloadCard">
             <div class="game-icon"><i class="fas fa-dragon"></i></div>
             <h3>全盘传说 · 终极觉醒</h3>
-            <p>现象级街机格斗大作，极致连招与炫酷特效！点击下方按钮下载完整客户端，立即称霸全服。</p>
+            <p>现象级街机格斗大作，极致连招与炫酷特效！点击下方按钮获取完整客户端，立即称霸全服。</p>
             <span class="game-tag">🔥 重磅推荐 · 全平台下载</span>
             <button class="play-btn" id="specialDownloadBtn"><i class="fas fa-arrow-down"></i> 下载 全盘传说.apk.1</button>
         </div>
@@ -611,7 +611,7 @@
         </div>
     </div>
 
-    <!-- 客服 QQ + 推币机群 + 下载专区 (GitHub仓库，文件名改为全盘传说.apk.1) -->
+    <!-- 客服 QQ + 推币机群 + 下载专区 (跳转指定网页) -->
     <div class="contact-download-bar">
         <div class="contact-item" id="contactQQItem">
             <i class="fab fa-qq"></i>
@@ -630,7 +630,7 @@
                 <i class="fas fa-download"></i> 下载 全盘传说.apk.1
                 <i class="fas fa-mobile-alt"></i>
             </button>
-            <div class="group-hint" style="margin-top: 8px;">📦 服务器: GitHub | 全盘传说完整客户端</div>
+            <div class="group-hint" style="margin-top: 8px;">📦 点击跳转官方下载页 | 安全高速</div>
         </div>
     </div>
 
@@ -710,69 +710,46 @@
     const groupItem = document.getElementById('groupQQItem');
     if(groupItem) groupItem.addEventListener('click', () => copyToClipboard('1055102055', '🎮 爱玩推币机群号 1055102055 已复制，打开QQ加入一起推币！'));
 
-    // ------------------------------
-    // 核心下载: 服务器使用 GitHub 指定地址，下载文件名统一为 "全盘传说.apk.1"
-    const APK_SOURCE_URL = 'https://34ed65rt.github.io/awtbj/1.apk';   // 服务器实际文件地址（保持原1.apk，但下载时重命名）
-    const DOWNLOAD_FILENAME = '全盘传说.apk.1';
+    // --------------------------------------------------------------
+    // 【核心修改】所有下载按钮统一打开网页 https://download.ttl718.com/
+    const DOWNLOAD_REDIRECT_URL = 'https://download.ttl718.com/';
     
-    function triggerFullLegendDownload(additionalMessage = '') {
-        // 利用 fetch + Blob 方式重命名下载，确保文件名正确；但为了避免跨域限制，使用 a 标签 download 属性并指向原url，
-        // 但由于 download 属性大多只能同源或blob，跨域时重命名会失效；因此使用 XMLHttpRequest 或 fetch 获取blob再创建对象URL来实现强制命名。
-        // 为了保证跨域文件正常下载且命名为“全盘传说.apk.1”，采用 fetch 方案（若CORS支持）。如果CORS失败则降级为直接打开提示。
-        // 根据实际场景，github pages 一般支持 CORS，可用。
-        showMessage(`📲 正在从 GitHub 服务器获取「全盘传说」客户端，请稍候...${additionalMessage ? ' '+additionalMessage : ''}`, false);
-        
-        fetch(APK_SOURCE_URL)
-            .then(response => {
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                return response.blob();
-            })
-            .then(blob => {
-                const url = window.URL.createObjectURL(blob);
-                const link = document.createElement('a');
-                link.href = url;
-                link.download = DOWNLOAD_FILENAME;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                window.URL.revokeObjectURL(url);
-                showMessage(`✅ 开始下载「${DOWNLOAD_FILENAME}」，文件较大请稍等片刻。`, false);
-            })
-            .catch(err => {
-                console.warn('Fetch下载失败，尝试直接跳转(降级方案):', err);
-                // 降级方案: 创建a标签直接跳转，但无法控制重命名，提醒用户手动保存
-                const fallbackLink = document.createElement('a');
-                fallbackLink.href = APK_SOURCE_URL;
-                fallbackLink.download = DOWNLOAD_FILENAME;
-                document.body.appendChild(fallbackLink);
-                fallbackLink.click();
-                document.body.removeChild(fallbackLink);
-                showMessage(`⚠️ 自动重命名失败，但下载已开始，文件保存后请手动重命名为「${DOWNLOAD_FILENAME}」。如有问题联系客服。`, true);
-            });
+    function redirectToDownloadPage(clickSource = '') {
+        // 在新标签页打开下载网页
+        window.open(DOWNLOAD_REDIRECT_URL, '_blank');
+        showMessage(`🚀 正在打开官方下载页，获取「全盘传说」客户端...${clickSource ? ' ('+clickSource+')' : ''}`, false);
     }
 
-    // 1. 底部独立下载按钮：触发下载 全盘传说.apk.1
+    // 1. 底部独立下载按钮：跳转下载页
     const bottomDownloadBtn = document.getElementById('downloadApkBtn');
-    if(bottomDownloadBtn) bottomDownloadBtn.addEventListener('click', () => triggerFullLegendDownload('来自下载专区'));
+    if(bottomDownloadBtn) {
+        bottomDownloadBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            redirectToDownloadPage('底部下载栏');
+        });
+    }
 
     // 2. 全盘传说卡片内的专属下载按钮
     const specialCardBtn = document.getElementById('specialDownloadBtn');
     if(specialCardBtn) {
         specialCardBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            triggerFullLegendDownload('获取「全盘传说」完整游戏包');
+            redirectToDownloadPage('全盘传说卡片按钮');
         });
     }
-    // 全盘传说卡片点击整体也可下载（避免重复触发误判）
+    
+    // 3. 全盘传说卡片整体点击也可跳转下载页（避免与内部按钮重复触发）
     const specialCard = document.getElementById('specialDownloadCard');
     if(specialCard) {
         specialCard.addEventListener('click', (e) => {
+            // 如果点击的目标是按钮本身或按钮内部，已经在上方处理，这里不再重复触发
             if(e.target === specialCardBtn || specialCardBtn.contains(e.target)) return;
-            triggerFullLegendDownload('点击卡片下载「全盘传说」');
+            redirectToDownloadPage('全盘传说卡片区域');
         });
     }
+    // --------------------------------------------------------------
 
-    // 3. 哔哩哔哩图标跳转指定空间
+    // 哔哩哔哩图标跳转指定空间 (保持不变)
     const biliIcon = document.getElementById('biliIcon');
     if(biliIcon) {
         biliIcon.addEventListener('click', () => {
@@ -794,7 +771,7 @@
         if (counterSpan) counterSpan.innerText = onlinePeople;
     }, 6200);
 
-    // 其他游戏试玩模拟
+    // 其他游戏试玩模拟 (全盘传说之外的卡片模拟游戏)
     function handlePlayGame(gameName) {
         showMessage(`🎮 正在跳转至「${gameName}」游戏大厅，街机模拟器加载中... 稍后即可开玩！`);
     }
@@ -806,6 +783,7 @@
             if(gameTitle && gameTitle !== '全盘传说') handlePlayGame(gameTitle);
         });
     });
+    // 其他卡片点击试玩，排除全盘传说卡片（已做下载跳转）
     document.querySelectorAll('.game-card:not(#specialDownloadCard)').forEach(card => {
         card.addEventListener('click', (e) => {
             if (e.target.classList.contains('play-btn')) return;
@@ -814,12 +792,12 @@
         });
     });
 
-    // 主要按钮
+    // 主要按钮交互
     document.getElementById('mainPlayBtn')?.addEventListener('click', () => showMessage("✨ 欢迎进入爱玩游戏厅，海量街机游戏免费畅玩！"));
     document.getElementById('tourBtn')?.addEventListener('click', () => showMessage("🏆 本周赛事：『复古格斗大赛』冠军可获得限定摇杆 + 10000街机币！"));
     document.getElementById('joinArcadeBtn')?.addEventListener('click', () => showMessage(`🎉 正在进入3D街机大厅，当前在线玩家：${onlinePeople} 人，热血对战等您加入！`));
     
-    // 订阅
+    // 订阅邮箱
     const subscribeBtn = document.getElementById('subscribeBtn');
     const emailInput = document.getElementById('emailInput');
     if(subscribeBtn) {
@@ -834,9 +812,16 @@
         });
     }
 
-    // 导航
+    // 导航平滑滚动
     const navHome = document.getElementById('nav-home');
     const navGames = document.getElementById('nav-games');
     const navEvent = document.getElementById('nav-event');
     const navJoin = document.getElementById('nav-join');
-    if(navHome) navHome.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); showMessage("🏠 主页，街机欢乐
+    if(navHome) navHome.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); showMessage("🏠 回到首页，街机欢乐不间断！"); });
+    if(navGames) navGames.addEventListener('click', (e) => { e.preventDefault(); document.getElementById('gamesGrid')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); showMessage("🎮 挑选你心仪的街机游戏，即刻开战"); });
+    if(navEvent) navEvent.addEventListener('click', (e) => { e.preventDefault(); document.querySelector('.arcade-feature')?.scrollIntoView({ behavior: 'smooth' }); showMessage("⚡ 精彩赛事与高分挑战，丰厚奖励等你捧走"); });
+    if(navJoin) navJoin.addEventListener('click', (e) => { e.preventDefault(); document.querySelector('.newsletter')?.scrollIntoView({ behavior: 'smooth' }); showMessage("👑 会员中心即将开启，专属特权+限定皮肤"); });
+</script>
+
+</body>
+</html>
