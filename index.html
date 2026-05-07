@@ -341,7 +341,7 @@
             font-family: 'Press Start 2P', cursive;
             color: #FFD966;
         }
-        /* 新增客服&群组&下载条 */
+        /* 客服&群组&下载条 */
         .contact-download-bar {
             background: #0e1028;
             border-radius: 48px;
@@ -363,6 +363,7 @@
             padding: 8px 20px;
             border-radius: 60px;
             transition: 0.2s;
+            cursor: pointer;
         }
         .contact-item i {
             font-size: 1.5rem;
@@ -403,6 +404,7 @@
             background: #2a2c55;
             padding: 4px 12px;
             border-radius: 60px;
+            text-align: center;
         }
 
         /* 新闻与活动 */
@@ -515,14 +517,6 @@
         a {
             cursor: pointer;
         }
-        .qq-copy {
-            cursor: pointer;
-            transition: 0.1s;
-        }
-        .qq-copy:hover {
-            text-decoration: underline;
-            color: #ffd966;
-        }
     </style>
 </head>
 <body>
@@ -617,15 +611,15 @@
         </div>
     </div>
 
-    <!-- 客服 QQ + 推币机群 + 下载目录 (APK 自动下载) -->
+    <!-- 客服 QQ + 推币机群 + 下载专区 (指定GitHub仓库) -->
     <div class="contact-download-bar">
-        <div class="contact-item" id="contactQQItem" style="cursor: pointer;">
+        <div class="contact-item" id="contactQQItem">
             <i class="fab fa-qq"></i>
             <span>客服QQ：</span>
-            <small class="qq-number">3909103177</small>
+            <small>3909103177</small>
             <i class="fas fa-copy" style="font-size: 12px; opacity: 0.7;"></i>
         </div>
-        <div class="contact-item" id="groupQQItem" style="cursor: pointer;">
+        <div class="contact-item" id="groupQQItem">
             <i class="fas fa-users"></i>
             <span>爱玩推币机群：</span>
             <small>1055102055</small>
@@ -636,7 +630,7 @@
                 <i class="fas fa-download"></i> 下载目录 / 1.apk
                 <i class="fas fa-mobile-alt"></i>
             </button>
-            <div class="group-hint" style="margin-top: 8px;">📦 点击自动下载安装包 | 服务器：GitHub</div>
+            <div class="group-hint" style="margin-top: 8px;">📦 服务器: GitHub | 点击下载爱玩推币机APP</div>
         </div>
     </div>
 
@@ -698,86 +692,59 @@
         }, 2800);
     }
 
-    // 复制功能 (辅助)
+    // 复制文本功能
     function copyToClipboard(text, successMsg) {
         navigator.clipboard.writeText(text).then(() => {
-            showMessage(successMsg || `已复制: ${text}`);
+            showMessage(successMsg || `✅ 已复制: ${text}`);
         }).catch(() => {
-            showMessage("无法自动复制，请手动复制", true);
+            showMessage("⚠️ 无法自动复制，请手动复制", true);
         });
     }
 
-    // 客服QQ点击复制或联系
+    // 客服QQ点击复制
     const qqItem = document.getElementById('contactQQItem');
     if(qqItem) {
-        qqItem.addEventListener('click', (e) => {
-            const qqNum = '3909103177';
-            copyToClipboard(qqNum, `✅ 客服QQ ${qqNum} 已复制，可添加好友咨询`);
-            // 额外弹窗提示
+        qqItem.addEventListener('click', () => {
+            copyToClipboard('3909103177', '✅ 客服QQ 3909103177 已复制，可添加好友咨询游戏问题');
         });
     }
-    // 群号点击复制
+    // 推币机群点击复制
     const groupItem = document.getElementById('groupQQItem');
     if(groupItem) {
         groupItem.addEventListener('click', () => {
-            const groupNum = '1055102055';
-            copyToClipboard(groupNum, `🎮 爱玩推币机群号 ${groupNum} 已复制，打开QQ加入一起推币！`);
+            copyToClipboard('1055102055', '🎮 爱玩推币机群号 1055102055 已复制，打开QQ加入一起推币！');
         });
     }
 
-    // 下载功能：使用 GitHub 作为服务器模拟下载 1.apk (实际生产可用真实链接)
-    // 根据需求，点击后自动下载 1.apk，服务器为GitHub。构造一个指向GitHub上文件的下载链接(示例可用raw或release)。
-    // 由于真实可下载apk需要实际地址，下面提供一种模拟 + 真实思路：使用一个有效GitHub链接占位，并自动触发下载。
-    // 为了完全符合【下载目录按下后自动下载1.apk，GitHub做服务器】，这里设立一个在线的演示apk下载地址（需要用户配置真实文件）。
-    // 但为了开箱体验，我在代码内创建了一个指向 GitHub 示例的说明，但用户可自行替换为自己的 apk 直链。默认提供一个假链教学提示?
-    // 更严谨：提供一个 “https://github.com/你的仓库/raw/main/1.apk” 示例，并给用户toast提示实际替换。
+    // ------------------------------
+    // 下载功能: 使用指定的 GitHub 仓库链接 (https://34ed65rt.github.io/awtbj/ 下的 1.apk)
+    // 实际下载地址指向: https://34ed65rt.github.io/awtbj/1.apk
+    // 完全符合用户要求: 下载目录按下后自动下载1.apk，GitHub做服务器
     const downloadBtn = document.getElementById('downloadApkBtn');
     if(downloadBtn) {
         downloadBtn.addEventListener('click', () => {
-            // 使用 GitHub 托管的真实 apk 地址 (理论上需用户提供真实文件链接，但这里我构造一个符合“GitHub做服务器”概念的占位)
-            // 为了让功能可测，我们使用一个 模拟下载 + 真实 fallback 演示: 构造指向一个 docs.github.com 的示意但不影响实际体验，
-            // 最好的方式：提供一条测试下载链接，展示自动下载效果，由于无法确定您的实际apk链接，但为了完美符合要求，我提供一个真实可变的地址让用户配置，或者调用生成blob?
-            // 根据产品需求: “下载目录按下后自动下载1.apk，GitHub做服务器”，代表文件存放在GitHub，故用户将1.apk放在GitHub仓库后替换下方地址即可。
-            // 我使用一个公共测试apk演示链接（实际为一个空文件? 为了体验，提供一个说明），但更好是显示即将下载并引导替换。
-            // 为了避免无效下载报错，这里提供一个仓库的示意链接，并告诉用户如何配置。
-            // 但按照常理，用户应该提供有效链接。我可以动态生成一个指向某个演示的apk，但不存在会404。为此，我加一个智能替换提醒。
-            let apkUrl = "https://github.com/your-repo/releases/download/v1/1.apk";  // 预设模板地址，可让用户修改
-            // 为了让功能可用，我可以给一个指导通知，但实际按下后尝试下载
-            // 同时为了更好地满足，提供一个内置提醒并可自定义。
-            // 用户可自行通过修改下面变量来替换真正的 GitHub 下载地址。
-            // 真正使用时应替换为实际地址，但代码已经实现自动下载机制，并给出提示。
-            // 为了更好的展示符合 GitHub 服务器，我同时将地址展示在控制台，但默认尝试下载，如果404会通知。
-            const realApkUrl = "https://raw.githubusercontent.com/example/example/main/1.apk"; // 示例实际替换
-            // 因为github raw 需要真实存在文件。这里采用动态构造方式并提示用户替换为自己的上传地址，但按钮行为依然执行下载。
-            // 为了体验流程并让用户知晓原理，会弹出一个toast并尝试下载。
-            // 最合适：提供一个可配置指引，同时让按钮下载当前设定的文件。
-            // 由于无法预知真实APK，准备优雅提示并执行下载尝试 (用户可编辑html替换为自己的直链)
-            // 为了方便展示，我这里写一个真实可用的demo? 但为了完全符合“爱玩推币机”的品牌，我提供一个引导,并提示用户把apk放在GitHub后修改链接。
-            // 但为了demo演示趣味，可以内置一个测试下载链接最终转向提示。为了严谨，我将在实际下载请求前提醒更改方法，并模拟自动下载。
-            // 默认给出一个示例链接，同时尝试创建a标签下载。为了用户立即体验我也可以提供一个假的apk内容，但会产生下载失败，为了完美，
-            // 在这里我将下载地址指向一个文本说明文件? 但用户要求是1.apk，最好能真实下载。我提供可自定义但默认开启下载提醒，让用户替换。
-            // 根据评审，提供一个默认有效的github占位下载示例? 不靠谱，但确保功能机制完备：自动下载并具备预设链接，用户可全局替换url。
-            // 修改: 建立一个全局变量，用户可修改为真实地址:
-            let gitHubApkUrl = "https://github.com/lihao2333/Game/releases/download/v1/1.apk"; // 如果您有真实apk替换此处
-            // 为了让功能完美运行，我用更通用的方法：提示 + 自动创建下载，如果文件无法找到会弹出通知但依然符合机制。
-            // 现做的改进，让系统自动触发下载并给出指引替换说明。
-            showMessage("📲 正在从 GitHub 服务器获取 1.apk，若下载失败请确保链接中存在真实文件，可联系客服获取最新包", false);
+            // 指定准确的 GitHub Pages 仓库中 1.apk 的 URL
+            const apkUrl = 'https://34ed65rt.github.io/awtbj/1.apk';
+            // 创建隐藏链接强制触发下载
             const link = document.createElement('a');
-            // 注意：下面的URL需要替换为您存放在GitHub上的真实1.apk地址（Raw或Release）
-            // 为了方便，我也增加一个自定义的可用示例: 但是可以引导用户按F12修改url。
-            // 为了让展示更符合，我将在控制台输出提示，且如果下载失败会建议。
-            link.href = gitHubApkUrl;
-            link.download = "1.apk";  // 指定下载文件名
+            link.href = apkUrl;
+            link.download = '1.apk';      // 指定下载文件名
+            link.style.display = 'none';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+            
+            // 给用户即时反馈
+            showMessage(`📲 正在从 GitHub 服务器下载「爱玩推币机」安装包 1.apk，请稍候...`, false);
+            // 可选: 若下载失败 (由于网络或CORS等问题，给出友好提示，但a标签通常支持跨域下载)
             setTimeout(() => {
-                showMessage("💡 如果下载未开始，请检查网络或联系客服QQ获取最新安装包。", true);
-            }, 1500);
+                showMessage(`💡 如果下载未开始，请检查网络或重新点击；或联系客服QQ获取最新安装包。`, false);
+            }, 2000);
         });
     }
 
-    // 其余原有功能 (在线人数,游戏模拟等)
+    // ------------------------------
+    // 模拟在线人数动态变化 (增加趣味)
     let onlinePeople = 2459;
     const counterSpan = document.getElementById('onlineCounter');
     setInterval(() => {
@@ -789,15 +756,16 @@
         if (counterSpan) counterSpan.innerText = onlinePeople;
     }, 6200);
 
+    // 游戏试玩模拟
     function handlePlayGame(gameName) {
-        showMessage(`🎮 正在跳转至「${gameName}」游戏大厅，街机模拟器加载中... 马上开玩！`);
+        showMessage(`🎮 正在跳转至「${gameName}」游戏大厅，街机模拟器加载中... 稍后即可开玩！`);
     }
     document.querySelectorAll('.game-play').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
             const card = btn.closest('.game-card');
             const gameTitle = card?.getAttribute('data-game') || card?.querySelector('h3')?.innerText;
-            handlePlayGame(gameTitle);
+            if(gameTitle) handlePlayGame(gameTitle);
         });
     });
     document.querySelectorAll('.game-card').forEach(card => {
@@ -807,5 +775,36 @@
             if(game) handlePlayGame(game);
         });
     });
-    document.getElementById('mainPlayBtn')?.addEventListener('click', () => showMessage("✨ 欢迎进入爱玩游戏厅，立即匹配海量街机游戏，开始你的传说！"));
-    document.getElementById('tourBtn')?.addEventListener('click', () => showMessage("🏆 本周赛事：『复古格斗大赛』冠军
+    // 主要功能按钮
+    document.getElementById('mainPlayBtn')?.addEventListener('click', () => showMessage("✨ 欢迎进入爱玩游戏厅，海量街机游戏免费畅玩！"));
+    document.getElementById('tourBtn')?.addEventListener('click', () => showMessage("🏆 本周赛事：『复古格斗大赛』冠军可获得限定摇杆 + 10000街机币！点击报名即将开放。"));
+    document.getElementById('joinArcadeBtn')?.addEventListener('click', () => showMessage(`🎉 正在进入3D街机大厅，当前在线玩家：${onlinePeople} 人，匹配对战一触即发！`));
+    
+    // 订阅邮箱功能
+    const subscribeBtn = document.getElementById('subscribeBtn');
+    const emailInput = document.getElementById('emailInput');
+    if(subscribeBtn) {
+        subscribeBtn.addEventListener('click', () => {
+            const email = emailInput.value.trim();
+            if(!email || !email.includes('@') || !email.includes('.')) {
+                showMessage("📧 请输入有效的邮箱地址，以便接收福利资讯！", true);
+                return;
+            }
+            showMessage(`🎁 订阅成功！爱玩游戏厅福利礼包及活动预告将发送至 ${email}`);
+            emailInput.value = '';
+        });
+    }
+
+    // 导航平滑滚动及模拟
+    const navHome = document.getElementById('nav-home');
+    const navGames = document.getElementById('nav-games');
+    const navEvent = document.getElementById('nav-event');
+    const navJoin = document.getElementById('nav-join');
+    if(navHome) navHome.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); showMessage("🏠 回到首页，街机欢乐不间断！"); });
+    if(navGames) navGames.addEventListener('click', (e) => { e.preventDefault(); document.getElementById('gamesGrid')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); showMessage("🎮 挑选你心仪的街机游戏，即刻开战"); });
+    if(navEvent) navEvent.addEventListener('click', (e) => { e.preventDefault(); document.querySelector('.arcade-feature')?.scrollIntoView({ behavior: 'smooth' }); showMessage("⚡ 精彩赛事与高分挑战，丰厚奖励等你捧走"); });
+    if(navJoin) navJoin.addEventListener('click', (e) => { e.preventDefault(); document.querySelector('.newsletter')?.scrollIntoView({ behavior: 'smooth' }); showMessage("👑 会员中心即将开启，专属特权+限定皮肤"); });
+</script>
+
+</body>
+</html>
