@@ -2,669 +2,715 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>经典扫雷 | 网页版游戏</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>爱玩游戏厅 - 复古与激情游戏天堂</title>
+    <!-- 引入现代字体与图标库 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            background: linear-gradient(145deg, #4a5b6e 0%, #2c3e2f 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Segoe UI', 'Courier New', 'Monaco', monospace;
-            margin: 0;
-            padding: 20px;
+            background: linear-gradient(145deg, #0b0c1a 0%, #12132c 100%);
+            font-family: 'Inter', sans-serif;
+            color: #f0f0f0;
+            line-height: 1.5;
+            overflow-x: hidden;
         }
 
-        /* 游戏面板容器 */
-        .game-container {
-            background: #b0b0b0;
-            padding: 24px 20px 20px 20px;
-            border-radius: 24px;
-            box-shadow: 8px 8px 16px rgba(0,0,0,0.4), inset -2px -2px 4px rgba(0,0,0,0.2), inset 2px 2px 4px rgba(255,255,255,0.6);
+        /* 霓虹滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e1f3a;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f5b042;
+            border-radius: 10px;
+            box-shadow: inset 0 0 3px #ffd966;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff9f2e;
         }
 
-        /* 控制栏区域 */
-        .control-bar {
-            background: #c0c0c0;
-            border-radius: 12px;
-            padding: 10px 20px;
-            margin-bottom: 24px;
+        /* 复古像素字体用于标题点缀 */
+        .pixel-font {
+            font-family: 'Press Start 2P', cursive;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* 导航栏 */
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: inset 1px 1px 3px rgba(0,0,0,0.2), inset -1px -1px 2px rgba(255,255,255,0.7), 2px 2px 5px rgba(0,0,0,0.3);
+            padding: 20px 0;
+            flex-wrap: wrap;
+            border-bottom: 2px solid rgba(245, 176, 66, 0.4);
         }
-
-        /* 计分板和雷数显示器 */
-        .info-panel {
-            background: #000000;
-            color: #f44;
-            font-size: 2rem;
-            font-weight: bold;
-            font-family: 'Digital-7', 'Courier New', monospace;
-            padding: 4px 12px;
-            border-radius: 10px;
-            letter-spacing: 4px;
-            text-shadow: 0 0 3px red;
-            box-shadow: inset 2px 2px 5px rgba(0,0,0,0.5), inset -1px -1px 2px rgba(255,255,255,0.2);
-        }
-
-        .emoji-btn {
-            background: #d4d4d4;
-            font-size: 2.4rem;
-            border: none;
-            cursor: pointer;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            box-shadow: 3px 3px 6px rgba(0,0,0,0.3), inset -1px -1px 2px rgba(0,0,0,0.2), inset 1px 1px 2px white;
-            transition: 0.05s linear;
+        .logo {
             display: flex;
             align-items: center;
-            justify-content: center;
-            background: #c2c2c2;
-        }
-
-        .emoji-btn:active {
-            transform: scale(0.94);
-            box-shadow: inset 2px 2px 5px rgba(0,0,0,0.4);
-        }
-
-        /* 难度切换区 */
-        .difficulty-row {
-            display: flex;
             gap: 12px;
-            justify-content: center;
+        }
+        .logo-icon {
+            font-size: 2.2rem;
+            color: #f5b042;
+            text-shadow: 0 0 8px #ffa500;
+        }
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFD966, #F5A623);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            font-size: 0.85rem;
+            background: #f5b04220;
+            padding: 4px 8px;
+            border-radius: 30px;
+            font-weight: 500;
+            border-left: 2px solid #f5b042;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #e0e0ff;
+            font-weight: 600;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .nav-links a:hover {
+            color: #f5b042;
+            text-shadow: 0 0 5px #f5b042;
+        }
+
+        /* Hero 炫酷区域 */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 60px 0 40px;
+            gap: 30px;
+        }
+        .hero-content {
+            flex: 1;
+        }
+        .hero-badge {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            background: rgba(245, 176, 66, 0.2);
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 40px;
+            margin-bottom: 20px;
+            border: 1px solid #f5b042;
+            color: #ffdd99;
+        }
+        .hero-content h2 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.2;
             margin-bottom: 20px;
         }
-
-        .difficulty-btn {
-            background: #e0e0e0;
+        .hero-gradient {
+            background: linear-gradient(135deg, #FFF5E0, #FFC857);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero-content p {
+            font-size: 1.15rem;
+            color: #c2c2e0;
+            max-width: 500px;
+            margin-bottom: 32px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: linear-gradient(95deg, #f5a623, #f5b042);
             border: none;
-            font-family: monospace;
-            font-weight: bold;
-            padding: 6px 16px;
-            border-radius: 28px;
+            padding: 12px 28px;
+            font-weight: 700;
             font-size: 1rem;
+            border-radius: 60px;
+            color: #0b0c1a;
             cursor: pointer;
-            box-shadow: 2px 2px 4px rgba(0,0,0,0.3), inset -1px -1px 1px rgba(0,0,0,0.1), inset 1px 1px 2px white;
-            transition: 0.07s;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 6px 14px rgba(245, 176, 66, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
-
-        .difficulty-btn.active {
-            background: #9bb7d2;
-            box-shadow: inset 2px 2px 5px rgba(0,0,0,0.3);
-            transform: scale(0.97);
-            color: white;
-            text-shadow: 0 1px 1px black;
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px rgba(245, 176, 66, 0.4);
         }
-
-        /* 扫雷网格 */
-        .board {
-            display: grid;
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #f5b042;
+            padding: 10px 26px;
+            font-weight: 600;
+            border-radius: 60px;
+            color: #f5b042;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-outline:hover {
+            background: #f5b04220;
+            transform: translateY(-2px);
+        }
+        .hero-stats {
+            display: flex;
+            gap: 28px;
+            margin-top: 40px;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat .number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #f5b042;
+        }
+        .hero-image {
+            flex: 1;
+            display: flex;
             justify-content: center;
-            background-color: #9e9e9e;
-            padding: 12px;
-            border-radius: 16px;
-            box-shadow: inset 2px 2px 6px rgba(0,0,0,0.4), inset -2px -2px 3px rgba(255,255,255,0.5);
+        }
+        .gamepad-3d {
+            background: radial-gradient(circle at 30% 20%, #2b2d5c, #15172f);
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.5), inset 0 1px 4px rgba(255,255,200,0.2);
+            border: 2px solid #f5b04288;
+        }
+        .gamepad-3d i {
+            font-size: 8rem;
+            color: #FFD966;
+            filter: drop-shadow(0 0 12px #ffaa33);
         }
 
-        /* 格子样式 */
-        .cell {
-            width: 34px;
-            height: 34px;
-            background-color: #bdbdbd;
-            border: 1px solid #7e7e7e;
+        /* 游戏展示区 */
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin: 60px 0 20px;
+            font-weight: 700;
+        }
+        .section-sub {
+            text-align: center;
+            color: #aca9e0;
+            margin-bottom: 48px;
+        }
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 32px;
+            margin-bottom: 40px;
+        }
+        .game-card {
+            background: rgba(20, 22, 48, 0.65);
+            backdrop-filter: blur(3px);
+            border-radius: 32px;
+            padding: 24px 20px 28px;
+            text-align: center;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(245, 176, 66, 0.2);
+            cursor: pointer;
+        }
+        .game-card:hover {
+            transform: translateY(-8px);
+            border-color: #f5b042;
+            box-shadow: 0 16px 30px -8px rgba(0,0,0,0.5), 0 0 0 1px rgba(245,176,66,0.3);
+            background: rgba(30, 32, 70, 0.8);
+        }
+        .game-icon {
+            font-size: 3.2rem;
+            background: #f5b04220;
+            width: 80px;
+            height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-            cursor: pointer;
-            box-shadow: inset -1px -1px 0px #404040, inset 1px 1px 0px #f0f0f0;
-            transition: 0.02s linear;
-            font-family: monospace;
+            border-radius: 30px;
+            margin: 0 auto 18px;
+            color: #ffcd7e;
         }
-
-        /* 已翻开格子风格 */
-        .cell.revealed {
-            background-color: #d0d0d0;
-            box-shadow: inset 0 0 0 1px #a0a0a0;
-            border: none;
-            cursor: default;
+        .game-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
         }
-
-        /* 标记旗子样式 */
-        .cell.flagged::before {
-            content: "🚩";
-            font-size: 1.2rem;
-            line-height: 1;
+        .game-card p {
+            color: #bbb9e6;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
         }
-
-        .cell.flagged {
-            font-size: 0;
-        }
-
-        /* 数字颜色 */
-        .cell[data-value="1"] { color: #0100fe; }
-        .cell[data-value="2"] { color: #017e00; }
-        .cell[data-value="3"] { color: #fe0000; }
-        .cell[data-value="4"] { color: #010081; }
-        .cell[data-value="5"] { color: #810101; }
-        .cell[data-value="6"] { color: #00817e; }
-        .cell[data-value="7"] { color: #000000; }
-        .cell[data-value="8"] { color: #7e7e7e; }
-
-        /* 炸弹爆炸效果 */
-        .cell.mine-blast {
-            background-color: #f77;
-            color: black;
-        }
-
-        /* 游戏结束/胜利遮罩 (消息层) */
-        .game-message {
-            text-align: center;
-            margin-top: 14px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            background: #e8cf9a;
-            padding: 5px;
+        .game-tag {
+            display: inline-block;
+            background: #2a2c55;
+            padding: 4px 12px;
             border-radius: 40px;
-            color: #3d2a1a;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 16px;
             font-size: 0.75rem;
-            color: #ececec;
-            text-shadow: 1px 1px 0 #1e2a1f;
+            font-weight: 500;
+            color: #ffdd99;
+        }
+        .play-btn {
+            margin-top: 18px;
+            background: none;
+            border: 1px solid #f5b042;
+            color: #f5b042;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: 0.2s;
+            cursor: pointer;
+            width: 100%;
+            font-family: inherit;
+        }
+        .play-btn:hover {
+            background: #f5b042;
+            color: #0b0c1a;
         }
 
-        @media (max-width: 550px) {
-            .cell {
-                width: 28px;
-                height: 28px;
-                font-size: 1rem;
+        /* 街机特色区 */
+        .arcade-feature {
+            background: linear-gradient(105deg, #11132b, #191c3f);
+            border-radius: 48px;
+            margin: 60px 0;
+            padding: 48px 32px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #f5b04240;
+        }
+        .feature-text {
+            flex: 2;
+        }
+        .feature-text h3 {
+            font-size: 1.8rem;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+        }
+        .feature-text p {
+            max-width: 500px;
+        }
+        .counter {
+            flex: 1;
+            background: #00000030;
+            border-radius: 32px;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(8px);
+        }
+        .counter-number {
+            font-size: 3rem;
+            font-weight: 800;
+            font-family: 'Press Start 2P', cursive;
+            color: #FFD966;
+        }
+
+        /* 新闻与活动 */
+        .newsletter {
+            background: #0f1029;
+            border-radius: 40px;
+            padding: 48px 32px;
+            text-align: center;
+            margin: 40px 0 60px;
+        }
+        .newsletter h3 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+        .input-group {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+        .input-group input {
+            padding: 14px 20px;
+            border-radius: 60px;
+            border: none;
+            background: #1e2042;
+            color: white;
+            width: 280px;
+            font-size: 1rem;
+            outline: none;
+            border: 1px solid #3d3f6e;
+        }
+        .input-group input:focus {
+            border-color: #f5b042;
+        }
+
+        /* 页脚 */
+        footer {
+            border-top: 1px solid #2a2c55;
+            padding: 40px 0 30px;
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        .footer-col p {
+            color: #8a89b0;
+        }
+        .social-icons i {
+            font-size: 1.6rem;
+            margin-right: 20px;
+            color: #b9b7ec;
+            transition: 0.2s;
+        }
+        .social-icons i:hover {
+            color: #f5b042;
+        }
+
+        /* 响应式 */
+        @media (max-width: 800px) {
+            .hero-content h2 {
+                font-size: 2.2rem;
             }
-            .info-panel {
-                font-size: 1.4rem;
-                padding: 2px 10px;
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
             }
-            .emoji-btn {
-                width: 48px;
-                height: 48px;
+            .nav-links {
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .section-title {
                 font-size: 1.8rem;
             }
+        }
+
+        /* 模拟toast通知 */
+        .toast-msg {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e1f3a;
+            backdrop-filter: blur(12px);
+            padding: 12px 24px;
+            border-radius: 60px;
+            border-left: 4px solid #f5b042;
+            color: #ffeaaf;
+            font-weight: 500;
+            z-index: 1000;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: 0.2s;
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+        button {
+            cursor: pointer;
+        }
+        a {
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-<div>
-    <div class="game-container">
-        <div class="control-bar">
-            <div class="info-panel" id="mineCounter">000</div>
-            <button class="emoji-btn" id="resetButton">😊</button>
-            <div class="info-panel" id="flagCounter">000</div>
-        </div>
 
-        <div class="difficulty-row">
-            <button data-diff="easy" class="difficulty-btn active">🍃 简单 9x9</button>
-            <button data-diff="medium" class="difficulty-btn">⚡ 中等 16x16</button>
-            <button data-diff="hard" class="difficulty-btn">🔥 困难 16x30</button>
+<div class="container">
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-gamepad logo-icon"></i>
+            <h1>爱玩游戏厅</h1>
+            <span>ARCADE・RETRO</span>
         </div>
+        <ul class="nav-links">
+            <li><a href="#" id="nav-home">首页</a></li>
+            <li><a href="#" id="nav-games">游戏库</a></li>
+            <li><a href="#" id="nav-event">热门活动</a></li>
+            <li><a href="#" id="nav-join">会员中心</a></li>
+        </ul>
+    </nav>
 
-        <div id="boardContainer" class="board"></div>
-        <div id="gameStatusMsg" class="game-message">✨ 点击格子开始 ✨</div>
+    <!-- Hero 主视觉 -->
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-bolt"></i> 限时免费畅玩
+            </div>
+            <h2>重温街机黄金时代，<span class="hero-gradient">释放你的玩家之魂</span></h2>
+            <p>海量经典游戏 + 最新潮流街机，每周赛事、高分榜挑战，和朋友一起感受最纯粹的快乐！</p>
+            <div class="btn-group">
+                <button class="btn-primary" id="mainPlayBtn"><i class="fas fa-play"></i> 立即开玩</button>
+                <button class="btn-outline" id="tourBtn"><i class="fas fa-trophy"></i> 查看赛事</button>
+            </div>
+            <div class="hero-stats">
+                <div class="stat"><div class="number">280+</div><div>经典游戏</div></div>
+                <div class="stat"><div class="number">1.2M</div><div>活跃玩家</div></div>
+                <div class="stat"><div class="number">24/7</div><div>在线对战</div></div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="gamepad-3d">
+                <i class="fas fa-joystick"></i>
+            </div>
+        </div>
     </div>
-    <footer>🖱️ 左键开格 · 右键/长按标记🚩 | 再按旗子取消</footer>
+
+    <!-- 游戏推荐区 -->
+    <div class="section-title">✨ 热门街机精选 ✨</div>
+    <div class="section-sub">点击「立即试玩」即刻进入街机世界</div>
+    <div class="games-grid" id="gamesGrid">
+        <!-- 游戏卡片 1 -->
+        <div class="game-card" data-game="街头霸王Ⅱ">
+            <div class="game-icon"><i class="fas fa-fist-raised"></i></div>
+            <h3>街头霸王Ⅱ</h3>
+            <p>经典格斗，波动拳与升龙拳的传说，重新燃起热血对决。</p>
+            <span class="game-tag">格斗 · 街机</span>
+            <button class="play-btn game-play">⚡ 立即试玩</button>
+        </div>
+        <div class="game-card" data-game="合金弹头X">
+            <div class="game-icon"><i class="fas fa-bomb"></i></div>
+            <h3>合金弹头X</h3>
+            <p>横版射击爽快突突突，驾驶坦克与叛军激战！</p>
+            <span class="game-tag">射击 · 闯关</span>
+            <button class="play-btn game-play">⚡ 立即试玩</button>
+        </div>
+        <div class="game-card" data-game="拳皇'97">
+            <div class="game-icon"><i class="fas fa-users"></i></div>
+            <h3>拳皇'97</h3>
+            <p>三人小队，经典连招，人气草薙京、八神庵集结！</p>
+            <span class="game-tag">格斗 · 竞技</span>
+            <button class="play-btn game-play">⚡ 立即试玩</button>
+        </div>
+        <div class="game-card" data-game="恐龙快打">
+            <div class="game-icon"><i class="fas fa-dragon"></i></div>
+            <h3>恐龙快打</h3>
+            <p>横版动作清版神作，拳拳到肉，复古画风再现。</p>
+            <span class="game-tag">动作 · 合作</span>
+            <button class="play-btn game-play">⚡ 立即试玩</button>
+        </div>
+        <div class="game-card" data-game="雷电战机">
+            <div class="game-icon"><i class="fas fa-space-shuttle"></i></div>
+            <h3>雷电战机</h3>
+            <p>飞行射击天花板，华丽弹幕，挑战你的反应极限。</p>
+            <span class="game-tag">射击 · 雷电</span>
+            <button class="play-btn game-play">⚡ 立即试玩</button>
+        </div>
+        <div class="game-card" data-game="吃豆人锦标赛">
+            <div class="game-icon"><i class="fas fa-circle-notch"></i></div>
+            <h3>吃豆人锦标赛</h3>
+            <p>经典迷宫追逐，挑战最高分，萌趣与速度并存。</p>
+            <span class="game-tag">休闲 · 经典</span>
+            <button class="play-btn game-play">⚡ 立即试玩</button>
+        </div>
+    </div>
+
+    <!-- 街机特色/在线人数 -->
+    <div class="arcade-feature">
+        <div class="feature-text">
+            <h3><i class="fas fa-chalkboard-user"></i> 实时街机大厅</h3>
+            <p>现在同时在线一起玩的人数正在飙升！复古派对、在线联机，今日高分榜挑战者层出不穷。加入我们，与老友新朋一起夺榜。</p>
+            <button class="btn-outline" id="joinArcadeBtn" style="margin-top: 20px;"><i class="fas fa-sign-in-alt"></i> 进入街机大厅</button>
+        </div>
+        <div class="counter">
+            <div><i class="fas fa-user-astronaut"></i> 在线玩家</div>
+            <div class="counter-number" id="onlineCounter">2459</div>
+            <div style="font-size:0.7rem;">🔥 较昨日 +18%</div>
+        </div>
+    </div>
+
+    <!-- 订阅与活动 -->
+    <div class="newsletter">
+        <h3><i class="fas fa-envelope-open-text"></i> 不要错过新游 & 赛事</h3>
+        <p>每周送出街机币、限定主题皮肤，抢先体验未发布游戏！</p>
+        <div class="input-group">
+            <input type="email" placeholder="您的电子邮箱" id="emailInput">
+            <button class="btn-primary" id="subscribeBtn"><i class="fas fa-paper-plane"></i> 订阅福利</button>
+        </div>
+        <small style="opacity:0.6;">订阅即代表同意接收游戏资讯，随时退订。</small>
+    </div>
+
+    <footer>
+        <div class="footer-col">
+            <h4><i class="fas fa-gamepad"></i> 爱玩游戏厅</h4>
+            <p>© 2025 复古与科技融合的线上街机乐园。</p>
+            <p>All trademarks are property of their owners.</p>
+        </div>
+        <div class="footer-col">
+            <h4>快速链接</h4>
+            <p>关于我们 | 高分排行榜 | 活动规则</p>
+            <p>商务合作 | 帮助中心</p>
+        </div>
+        <div class="footer-col social-icons">
+            <i class="fab fa-discord"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-bilibili"></i>
+            <i class="fab fa-tiktok"></i>
+        </div>
+    </footer>
 </div>
 
 <script>
-    // ---------- 扫雷核心逻辑 ----------
-    let currentDifficulty = 'easy';    // 'easy', 'medium', 'hard'
-    let rows = 9, cols = 9, totalMines = 10;
-
-    // 游戏状态
-    let board = [];          // 存储每个格子对象: { isMine, revealed, flagged, neighborMines }
-    let gameActive = true;   // false表示游戏结束 (输或赢)
-    let winFlag = false;     // 是否胜利（用于避免胜利后再触发事件）
-    let firstMove = true;    // 是否第一次点击未翻开任何格子 (用于防止首点踩雷 + 布雷)
-
-    // DOM 元素
-    const boardContainer = document.getElementById('boardContainer');
-    const mineCounterSpan = document.getElementById('mineCounter');
-    const flagCounterSpan = document.getElementById('flagCounter');
-    const resetBtn = document.getElementById('resetButton');
-    const gameStatusDiv = document.getElementById('gameStatusMsg');
-    const diffBtns = document.querySelectorAll('.difficulty-btn');
-
-    // 辅助函数: 根据难度更新参数
-    function updateDifficultyParams() {
-        if (currentDifficulty === 'easy') {
-            rows = 9; cols = 9; totalMines = 10;
-        } else if (currentDifficulty === 'medium') {
-            rows = 16; cols = 16; totalMines = 40;
-        } else if (currentDifficulty === 'hard') {
-            rows = 16; cols = 30; totalMines = 99;
-        }
+    // 模拟通知弹出
+    function showMessage(text, isError = false) {
+        let toast = document.createElement('div');
+        toast.className = 'toast-msg';
+        toast.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-circle-info'}"></i> ${text}`;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 300);
+        }, 2800);
     }
 
-    // 格式化显示数字 (3位)
-    function formatCounter(num) {
-        if (num < 0) num = 0;
-        if (num > 999) return '999';
-        return num.toString().padStart(3, '0');
+    // 模拟简单的随机在线人数跳动
+    let onlinePeople = 2459;
+    const counterSpan = document.getElementById('onlineCounter');
+    setInterval(() => {
+        let fluctuation = Math.floor(Math.random() * 40) - 15; // -15~25
+        let newVal = onlinePeople + fluctuation;
+        if (newVal < 2100) newVal = 2100;
+        if (newVal > 4200) newVal = 4200;
+        onlinePeople = newVal;
+        if (counterSpan) counterSpan.innerText = onlinePeople;
+    }, 6200);
+
+    // 游戏卡片点击立即试玩 和 导航交互
+    const gameBtns = document.querySelectorAll('.game-play');
+    const gameCards = document.querySelectorAll('.game-card');
+
+    function handlePlayGame(gameName) {
+        showMessage(`🎮 正在跳转至「${gameName}」游戏大厅，街机模拟器加载中... 马上开玩！`);
+        // 模拟打开新游戏线路，真实场景可替换为游戏iframe或页面
     }
 
-    // 更新界面上的雷数指示器 (剩余未标记雷数参考显示: 剩余雷数 = totalMines - 已放置旗子数)
-    function updateCounters() {
-        let flaggedCount = 0;
-        for (let i = 0; i < rows; i++) {
-            for (let j = 0; j < cols; j++) {
-                if (board[i][j].flagged) flaggedCount++;
-            }
-        }
-        let remainingMines = totalMines - flaggedCount;
-        mineCounterSpan.innerText = formatCounter(remainingMines);
-        flagCounterSpan.innerText = formatCounter(flaggedCount);
-    }
-
-    // 重新初始化空白板 (不布雷, 仅数据结构)
-    function initEmptyBoard() {
-        const newBoard = [];
-        for (let i = 0; i < rows; i++) {
-            newBoard[i] = [];
-            for (let j = 0; j < cols; j++) {
-                newBoard[i][j] = {
-                    isMine: false,
-                    revealed: false,
-                    flagged: false,
-                    neighborMines: 0
-                };
-            }
-        }
-        return newBoard;
-    }
-
-    // 计算每个非雷格子周围的雷数 (全盘)
-    function computeNeighbors(boardData) {
-        const dirs = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];
-        for (let i = 0; i < rows; i++) {
-            for (let j = 0; j < cols; j++) {
-                if (boardData[i][j].isMine) {
-                    boardData[i][j].neighborMines = -1;
-                    continue;
-                }
-                let cnt = 0;
-                for (let d of dirs) {
-                    const ni = i + d[0], nj = j + d[1];
-                    if (ni >= 0 && ni < rows && nj >= 0 && nj < cols && boardData[ni][nj].isMine) cnt++;
-                }
-                boardData[i][j].neighborMines = cnt;
-            }
-        }
-    }
-
-    // 布雷: 保证第一次点击的格子 (firstRow, firstCol) 不是雷, 并且避开该格子周围? 经典扫雷首格安全即可，无需复杂, 但要保证不踩雷
-    function placeMines(firstRow, firstCol) {
-        // 全新板子全清空
-        const newBoard = initEmptyBoard();
-        let minesPlaced = 0;
-        // 为了避免重复且首格无雷
-        while (minesPlaced < totalMines) {
-            const randRow = Math.floor(Math.random() * rows);
-            const randCol = Math.floor(Math.random() * cols);
-            // 不是首格位置且当前格无雷
-            if (!(randRow === firstRow && randCol === firstCol) && !newBoard[randRow][randCol].isMine) {
-                newBoard[randRow][randCol].isMine = true;
-                minesPlaced++;
-            }
-        }
-        computeNeighbors(newBoard);
-        return newBoard;
-    }
-
-    // 递归展开空白区域 ( Flood Fill )
-    function revealEmptyArea(row, col, visitedSet = null) {
-        if (!gameActive) return;
-        const cell = board[row][col];
-        if (cell.revealed || cell.flagged) return;
-
-        // 避免递归过深用set去重控制 (但其实逻辑里已经判断revealed)
-        cell.revealed = true;
-        if (cell.neighborMines === 0 && !cell.isMine) {
-            const dirs = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];
-            for (let d of dirs) {
-                const ni = row + d[0], nj = col + d[1];
-                if (ni >= 0 && ni < rows && nj >= 0 && nj < cols && !board[ni][nj].revealed && !board[ni][nj].flagged && !board[ni][nj].isMine) {
-                    revealEmptyArea(ni, nj);
-                }
-            }
-        }
-    }
-
-    // 翻开格子 (主要逻辑)
-    function revealCell(row, col) {
-        if (!gameActive) return false;
-        const cell = board[row][col];
-        if (cell.revealed) return false;
-        if (cell.flagged) {
-            gameStatusDiv.innerText = '🚫 请取消旗子后再点击 🚫';
-            setTimeout(() => { if(gameActive) gameStatusDiv.innerText = '游戏进行中'; }, 700);
-            return false;
-        }
-
-        if (cell.isMine) {
-            // 踩雷 Game Over
-            cell.revealed = true;
-            cell.flagged = false;
-            gameActive = false;
-            winFlag = false;
-            gameStatusDiv.innerText = '💣 踩到地雷！游戏结束 💣';
-            // 显示所有地雷
-            for (let i = 0; i < rows; i++) {
-                for (let j = 0; j < cols; j++) {
-                    if (board[i][j].isMine) {
-                        board[i][j].revealed = true;
-                        board[i][j].flagged = false;
-                    }
-                }
-            }
-            // 标记当前爆炸的格子特殊样式
-            renderBoard();
-            const blastCellDiv = document.querySelector(`.cell[data-row='${row}'][data-col='${col}']`);
-            if (blastCellDiv) blastCellDiv.classList.add('mine-blast');
-            document.getElementById('resetButton').innerHTML = '💀';
-            return false;
-        }
-
-        // 安全格子: 翻开
-        if (cell.neighborMines === 0) {
-            revealEmptyArea(row, col);
-        } else {
-            cell.revealed = true;
-        }
-        renderBoard();
-
-        // 胜利判定: 所有非雷格子均已翻开
-        let allSafeRevealed = true;
-        for (let i = 0; i < rows; i++) {
-            for (let j = 0; j < cols; j++) {
-                if (!board[i][j].isMine && !board[i][j].revealed) {
-                    allSafeRevealed = false;
-                    break;
-                }
-            }
-        }
-        if (allSafeRevealed && gameActive) {
-            gameActive = false;
-            winFlag = true;
-            gameStatusDiv.innerText = '🎉 胜利！ 完美排雷 🎉';
-            document.getElementById('resetButton').innerHTML = '😎';
-            renderBoard(); // 重新渲染，不再响应点击
-            return true;
-        }
-        return true;
-    }
-
-    // 标记旗子 / 取消旗子 (右键)
-    function toggleFlag(row, col, isRightClick = true) {
-        if (!gameActive) return false;
-        const cell = board[row][col];
-        if (cell.revealed) return false; // 已翻开不能标记
-        if (!cell.flagged) {
-            // 标记旗子
-            cell.flagged = true;
-        } else {
-            cell.flagged = false;
-        }
-        renderBoard();
-        updateCounters();
-        // 额外胜利判定：旗子标记正确并覆盖所有雷可以胜利但更符合直觉只要所有非雷翻开即胜利，但如果玩家旗子标记完所有雷且剩余未开格子全是雷自动胜利判定?
-        // 经典扫雷胜利条件是所有非雷格子翻开，所以不需要额外校验，我们已经有翻开判定胜利，但为了友好稍加自动胜利(可选):
-        // 另外检测: 所有地雷都被旗子标记且所有非雷已翻开 -> 但前面翻开判定已经涵盖，不需重复。
-        // 但是如果有玩家全旗子标记所有雷但没有完全翻开非雷依然不会胜利，这个合理。
-        return true;
-    }
-
-    // 渲染网格
-    function renderBoard() {
-        boardContainer.style.gridTemplateColumns = `repeat(${cols}, minmax(0, 1fr))`;
-        boardContainer.innerHTML = '';
-        for (let i = 0; i < rows; i++) {
-            for (let j = 0; j < cols; j++) {
-                const cell = board[i][j];
-                const cellDiv = document.createElement('div');
-                cellDiv.className = 'cell';
-                if (cell.revealed) cellDiv.classList.add('revealed');
-                if (cell.flagged && !cell.revealed) cellDiv.classList.add('flagged');
-                // 添加自定义属性标记坐标
-                cellDiv.setAttribute('data-row', i);
-                cellDiv.setAttribute('data-col', j);
-
-                // 显示内容
-                if (cell.revealed) {
-                    if (cell.isMine) {
-                        cellDiv.innerText = '💣';
-                        cellDiv.style.fontSize = '1.2rem';
-                    } else {
-                        const neighborVal = cell.neighborMines;
-                        if (neighborVal > 0) {
-                            cellDiv.innerText = neighborVal;
-                            cellDiv.setAttribute('data-value', neighborVal);
-                        } else {
-                            cellDiv.innerText = '';
-                        }
-                    }
-                } else {
-                    // 未翻开状态，旗子通过伪类显示，内容为空
-                    if (!cell.flagged) cellDiv.innerText = '';
-                    else cellDiv.innerText = ''; // 伪类显示旗子
-                }
-
-                // 添加事件监听 (统一在渲染时绑定替换, 避免内存问题但直接绑定新dom)
-                cellDiv.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    if (!gameActive) return;
-                    if (cell.revealed) return;
-                    if (cell.flagged) return;
-                    revealCell(i, j);
-                    updateCounters();
-                    // 游戏结束时重置按钮表情改变
-                    if (!gameActive && !winFlag) document.getElementById('resetButton').innerHTML = '😵';
-                    else if (winFlag) document.getElementById('resetButton').innerHTML = '🏆';
-                });
-
-                cellDiv.addEventListener('contextmenu', (e) => {
-                    e.preventDefault();
-                    if (!gameActive) return false;
-                    if (cell.revealed) return false;
-                    toggleFlag(i, j, true);
-                    updateCounters();
-                    return false;
-                });
-
-                // 移动端长按辅助: 简单的 touch 模拟右键
-                let touchTimer = null;
-                cellDiv.addEventListener('touchstart', (e) => {
-                    if (!gameActive) return;
-                    if (cell.revealed) return;
-                    touchTimer = setTimeout(() => {
-                        e.preventDefault();
-                        toggleFlag(i, j, true);
-                        updateCounters();
-                        touchTimer = null;
-                    }, 500);
-                });
-                cellDiv.addEventListener('touchend', (e) => {
-                    if (touchTimer) {
-                        clearTimeout(touchTimer);
-                        touchTimer = null;
-                        // 如果没有长按触发的flag，且游戏活跃且格子未翻开未旗子，执行左键点击逻辑
-                        if (gameActive && !cell.revealed && !cell.flagged) {
-                            revealCell(i, j);
-                            updateCounters();
-                            if (!gameActive && !winFlag) document.getElementById('resetButton').innerHTML = '😵';
-                            else if (winFlag) document.getElementById('resetButton').innerHTML = '🏆';
-                        }
-                    }
-                });
-                cellDiv.addEventListener('touchcancel', () => {
-                    if (touchTimer) clearTimeout(touchTimer);
-                });
-
-                boardContainer.appendChild(cellDiv);
-            }
-        }
-        // 更新计数器
-        updateCounters();
-    }
-
-    // 启动新游戏 (重置全部)
-    function newGame(clickRow = -1, clickCol = -1, isFirstMoveSync = false) {
-        gameActive = true;
-        winFlag = false;
-        firstMove = true;
-        document.getElementById('resetButton').innerHTML = '😊';
-        // 重置时需要用临时初始板子并依据首次点击布雷（但newGame调用通常是重置按钮或改难度且还没有点击事件）
-        // 为了行为统一，我们创建一个空板，但是实际布雷需要延迟到第一次点击
-        // 简单做法：初始准备一个无雷空板，firstMove标志为true，待第一次点击调用 placeMinesOnFirstClick
-        board = initEmptyBoard();
-        computeNeighbors(board); // 全0邻接
-        renderBoard();
-        updateCounters();
-        gameStatusDiv.innerText = '✨ 点击格子，首格安全 ✨';
-        // 如果重置时传入了指定点击 (但通常没有)
-        firstMove = true;
-    }
-
-    // 真正第一次点击时进行布雷并重新执行翻开操作
-    function firstClickReveal(row, col) {
-        // 根据点击位置布雷
-        const newBoard = placeMines(row, col);
-        board = newBoard;
-        // 布雷后执行翻开该格子
-        gameActive = true;
-        winFlag = false;
-        firstMove = false;
-        // 清除旗子标记残留 (新版板没有旗子)
-        renderBoard();
-        // 递归翻开当前无雷格子
-        const cell = board[row][col];
-        if (!cell.isMine) {
-            if (cell.neighborMines === 0) {
-                revealEmptyArea(row, col);
-            } else {
-                cell.revealed = true;
-            }
-        } else {
-            // 理论上placeMines已经保证首格无雷，不会进入这里
-            cell.revealed = true;
-            gameActive = false;
-            gameStatusDiv.innerText = '💣 程序异常? 重新开始';
-        }
-        renderBoard();
-        updateCounters();
-        // 胜利判定在reveal中已有，但调用reveal可能已触发 
-        let allSafe = true;
-        for (let i=0;i<rows;i++) {
-            for(let j=0;j<cols;j++) {
-                if(!board[i][j].isMine && !board[i][j].revealed) allSafe=false;
-            }
-        }
-        if(allSafe && gameActive) {
-            gameActive=false;
-            winFlag=true;
-            gameStatusDiv.innerText='🎉 胜利！ 完美排雷 🎉';
-            document.getElementById('resetButton').innerHTML='😎';
-            renderBoard();
-        }
-    }
-
-    // 封装重置并且让首格逻辑有效
-    function resetAndNewGame() {
-        board = initEmptyBoard();
-        computeNeighbors(board);
-        gameActive = true;
-        winFlag = false;
-        firstMove = true;
-        renderBoard();
-        updateCounters();
-        gameStatusDiv.innerText = '✨ 点击格子，首格安全 ✨';
-        document.getElementById('resetButton').innerHTML = '😊';
-        // 覆盖掉全局board的事件外，renderBoard绑定新的点击行为，点击时候会调用统一入口
-    }
-
-    // 重写原有的点击拦截 —— 由于renderBoard动态绑定了事件，但需要处理首次布阵。我们需要在revealCell内部检查firstMove全局
-    // 为了保留原函数整洁，保留原有revealCell，但修改revealCell开头加入首格处理:
-    const originalRevealCell = revealCell;
-    window.revealCell = function(row, col) {
-        if (!gameActive) return false;
-        if (firstMove === true) {
-            // 首次点击处理布雷逻辑
-            firstClickReveal(row, col);
-            return true;
-        } else {
-            return originalRevealCell(row, col);
-        }
-    };
-    // 替换全局调用
-    window.revealCellBind = window.revealCell;
-    // 重新定义 revealCell 函数
-    revealCell = function(row, col) {
-        if (!gameActive) return false;
-        if (firstMove === true) {
-            firstClickReveal(row, col);
-            return true;
-        } else {
-            return originalRevealCell(row, col);
-        }
-    };
-
-    // 难度切换
-    function setDifficulty(level) {
-        currentDifficulty = level;
-        updateDifficultyParams();
-        resetAndNewGame();
-        // 激活样式
-        diffBtns.forEach(btn => {
-            if(btn.getAttribute('data-diff') === level) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
-        });
-        // 强制重置网格大小样式
-        boardContainer.style.gridTemplateColumns = `repeat(${cols}, minmax(0, 1fr))`;
-    }
-
-    // 重置按钮逻辑
-    resetBtn.addEventListener('click', () => {
-        setDifficulty(currentDifficulty);
-    });
-
-    diffBtns.forEach(btn => {
+    gameBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            const diff = btn.getAttribute('data-diff');
-            if (diff === 'easy') setDifficulty('easy');
-            else if (diff === 'medium') setDifficulty('medium');
-            else if (diff === 'hard') setDifficulty('hard');
+            e.stopPropagation();
+            const card = btn.closest('.game-card');
+            const gameTitle = card?.getAttribute('data-game') || card?.querySelector('h3')?.innerText || "经典游戏";
+            handlePlayGame(gameTitle);
+        });
+    });
+    // 卡片整体点击也可以作为快捷
+    gameCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            if (e.target.classList.contains('game-play')) return;
+            const game = card.getAttribute('data-game') || card.querySelector('h3')?.innerText;
+            if(game) handlePlayGame(game);
         });
     });
 
-    // 初始化默认游戏 (easy)
-    function init() {
-        updateDifficultyParams();
-        resetAndNewGame();
+    // 主按钮立即开玩
+    const mainPlay = document.getElementById('mainPlayBtn');
+    if(mainPlay) {
+        mainPlay.addEventListener('click', () => {
+            showMessage("✨ 欢迎进入爱玩游戏厅，立即匹配海量街机游戏，开始你的传说！");
+        });
     }
-    init();
+    // 赛事按钮
+    const tourBtn = document.getElementById('tourBtn');
+    if(tourBtn) {
+        tourBtn.addEventListener('click', () => {
+            showMessage("🏆 本周赛事：『复古格斗大赛』冠军可获得限定摇杆 + 10000街机币！点击报名即将开放。");
+        });
+    }
+    // 进入街机大厅
+    const joinArcade = document.getElementById('joinArcadeBtn');
+    if(joinArcade) {
+        joinArcade.addEventListener('click', () => {
+            showMessage("🎉 正在进入3D街机大厅，当前在线玩家： " + onlinePeople + " 人，加入房间一起PK!");
+        });
+    }
+    // 订阅邮箱
+    const subscribeBtn = document.getElementById('subscribeBtn');
+    const emailInput = document.getElementById('emailInput');
+    if(subscribeBtn) {
+        subscribeBtn.addEventListener('click', () => {
+            const email = emailInput.value.trim();
+            if(!email || !email.includes('@') || !email.includes('.')) {
+                showMessage("请输入有效的邮箱地址~ 获取最新街机资讯!", true);
+                return;
+            }
+            showMessage(`📧 感谢订阅！爱玩游戏厅的福利礼包及活动预告将发送至 ${email}`);
+            emailInput.value = '';
+        });
+    }
+
+    // 导航简单模拟锚点效果
+    const navHome = document.getElementById('nav-home');
+    const navGames = document.getElementById('nav-games');
+    const navEvent = document.getElementById('nav-event');
+    const navJoin = document.getElementById('nav-join');
+    
+    if(navHome) {
+        navHome.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            showMessage("欢迎回到首页，热力街机等你来战！");
+        });
+    }
+    if(navGames) {
+        navGames.addEventListener('click', (e) => {
+            e.preventDefault();
+            const gamesSection = document.getElementById('gamesGrid');
+            if(gamesSection) {
+                gamesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                showMessage("🎮 精选游戏都在这里，选择你喜欢的开玩吧~");
+            }
+        });
+    }
+    if(navEvent) {
+        navEvent.addEventListener('click', (e) => {
+            e.preventDefault();
+            const arcadeFeature = document.querySelector('.arcade-feature');
+            if(arcadeFeature) arcadeFeature.scrollIntoView({ behavior: 'smooth' });
+            showMessage("⚡ 每日线上赛事/高分挑战，丰厚奖品等你拿！");
+        });
+    }
+    if(navJoin) {
+        navJoin.addEventListener('click', (e) => {
+            e.preventDefault();
+            const newsletterDiv = document.querySelector('.newsletter');
+            if(newsletterDiv) newsletterDiv.scrollIntoView({ behavior: 'smooth' });
+            showMessage("加入会员享双倍积分，每月限定街机皮肤免费领！");
+        });
+    }
+
+    // 额外：控制台输出友好消息
+    console.log("爱玩游戏厅官网已启动｜热血街机，永不落幕");
 </script>
+
 </body>
 </html>
