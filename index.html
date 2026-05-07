@@ -562,17 +562,17 @@
         </div>
     </div>
 
-    <!-- 游戏推荐区 -->
+    <!-- 游戏推荐区: 将街头霸王卡片改为“全盘传说下载引导” -->
     <div class="section-title">✨ 热门街机精选 ✨</div>
-    <div class="section-sub">点击「立即试玩」即刻进入街机世界</div>
+    <div class="section-sub">点击卡片或「立即试玩」畅玩经典 | 全盘传说专属下载通道</div>
     <div class="games-grid" id="gamesGrid">
-        <!-- 游戏卡片 1 -->
-        <div class="game-card" data-game="街头霸王Ⅱ">
-            <div class="game-icon"><i class="fas fa-fist-raised"></i></div>
-            <h3>街头霸王Ⅱ</h3>
-            <p>经典格斗，波动拳与升龙拳的传说，重新燃起热血对决。</p>
-            <span class="game-tag">格斗 · 街机</span>
-            <button class="play-btn game-play">⚡ 立即试玩</button>
+        <!-- 游戏卡片 1 - 原街头霸王 改为【全盘传说下载引导】 -->
+        <div class="game-card" data-game="全盘传说" id="specialDownloadCard">
+            <div class="game-icon"><i class="fas fa-download"></i></div>
+            <h3>全盘传说 · 终极版</h3>
+            <p>全新街机格斗大作，极致连招与炫酷特效！点击下方按钮下载完整客户端，立即称霸全服。</p>
+            <span class="game-tag">重磅推荐 · 立即下载</span>
+            <button class="play-btn" id="specialDownloadBtn"><i class="fas fa-arrow-down"></i> 下载全盘传说.apk</button>
         </div>
         <div class="game-card" data-game="合金弹头X">
             <div class="game-icon"><i class="fas fa-bomb"></i></div>
@@ -673,7 +673,8 @@
         <div class="footer-col social-icons">
             <i class="fab fa-discord"></i>
             <i class="fab fa-twitter"></i>
-            <i class="fab fa-bilibili"></i>
+            <!-- 哔哩哔哩图标：点击后跳转到指定的B站空间 -->
+            <i class="fab fa-bilibili" id="biliIcon" style="cursor: pointer;"></i>
             <i class="fab fa-tiktok"></i>
         </div>
     </footer>
@@ -703,48 +704,62 @@
 
     // 客服QQ点击复制
     const qqItem = document.getElementById('contactQQItem');
-    if(qqItem) {
-        qqItem.addEventListener('click', () => {
-            copyToClipboard('3909103177', '✅ 客服QQ 3909103177 已复制，可添加好友咨询游戏问题');
-        });
-    }
+    if(qqItem) qqItem.addEventListener('click', () => copyToClipboard('3909103177', '✅ 客服QQ 3909103177 已复制，可添加好友咨询游戏问题'));
+
     // 推币机群点击复制
     const groupItem = document.getElementById('groupQQItem');
-    if(groupItem) {
-        groupItem.addEventListener('click', () => {
-            copyToClipboard('1055102055', '🎮 爱玩推币机群号 1055102055 已复制，打开QQ加入一起推币！');
-        });
-    }
+    if(groupItem) groupItem.addEventListener('click', () => copyToClipboard('1055102055', '🎮 爱玩推币机群号 1055102055 已复制，打开QQ加入一起推币！'));
 
     // ------------------------------
-    // 下载功能: 使用指定的 GitHub 仓库链接 (https://34ed65rt.github.io/awtbj/ 下的 1.apk)
-    // 实际下载地址指向: https://34ed65rt.github.io/awtbj/1.apk
-    // 完全符合用户要求: 下载目录按下后自动下载1.apk，GitHub做服务器
+    // 全局下载函数: 使用指定 GitHub 仓库链接 (https://34ed65rt.github.io/awtbj/1.apk)
+    const APK_DOWNLOAD_URL = 'https://34ed65rt.github.io/awtbj/1.apk';
+    function triggerApkDownload(additionalMessage = '') {
+        const link = document.createElement('a');
+        link.href = APK_DOWNLOAD_URL;
+        link.download = '1.apk';
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        showMessage(`📲 正在从 GitHub 服务器下载「爱玩推币机」安装包 1.apk${additionalMessage ? '，'+additionalMessage : ''}，请稍候...`, false);
+        setTimeout(() => {
+            showMessage(`💡 如果下载未开始，请检查网络或重新点击；或联系客服QQ获取最新安装包。`, false);
+        }, 2000);
+    }
+
+    // 1. 底部下载目录按钮：下载 1.apk
     const downloadBtn = document.getElementById('downloadApkBtn');
-    if(downloadBtn) {
-        downloadBtn.addEventListener('click', () => {
-            // 指定准确的 GitHub Pages 仓库中 1.apk 的 URL
-            const apkUrl = 'https://34ed65rt.github.io/awtbj/1.apk';
-            // 创建隐藏链接强制触发下载
-            const link = document.createElement('a');
-            link.href = apkUrl;
-            link.download = '1.apk';      // 指定下载文件名
-            link.style.display = 'none';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            // 给用户即时反馈
-            showMessage(`📲 正在从 GitHub 服务器下载「爱玩推币机」安装包 1.apk，请稍候...`, false);
-            // 可选: 若下载失败 (由于网络或CORS等问题，给出友好提示，但a标签通常支持跨域下载)
-            setTimeout(() => {
-                showMessage(`💡 如果下载未开始，请检查网络或重新点击；或联系客服QQ获取最新安装包。`, false);
-            }, 2000);
+    if(downloadBtn) downloadBtn.addEventListener('click', () => triggerApkDownload());
+
+    // 2. 特别处理：原本的“街头霸王”卡片改为“全盘传说下载引导”，其按钮下载相同的 1.apk（按要求引导下载）
+    const specialDownloadCard = document.getElementById('specialDownloadCard');
+    const specialDownloadBtn = document.getElementById('specialDownloadBtn');
+    if(specialDownloadBtn) {
+        specialDownloadBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            triggerApkDownload('正在获取「全盘传说」完整客户端');
+        });
+    }
+    if(specialDownloadCard) {
+        specialDownloadCard.addEventListener('click', (e) => {
+            // 避免与按钮重复触发
+            if(e.target === specialDownloadBtn || specialDownloadBtn.contains(e.target)) return;
+            triggerApkDownload('下载「全盘传说」游戏包');
+        });
+    }
+
+    // 3. 哔哩哔哩头像（图标）点击跳转到指定 B 站空间
+    const biliIcon = document.getElementById('biliIcon');
+    if(biliIcon) {
+        biliIcon.addEventListener('click', () => {
+            const biliUrl = 'https://space.bilibili.com/3546689344375658?spm_id_from=333.337.search-card.all.click';
+            window.open(biliUrl, '_blank');
+            showMessage('🚀 正在前往B站官方空间，发现更多精彩游戏视频~', false);
         });
     }
 
     // ------------------------------
-    // 模拟在线人数动态变化 (增加趣味)
+    // 模拟在线人数动态变化
     let onlinePeople = 2459;
     const counterSpan = document.getElementById('onlineCounter');
     setInterval(() => {
@@ -756,7 +771,7 @@
         if (counterSpan) counterSpan.innerText = onlinePeople;
     }, 6200);
 
-    // 游戏试玩模拟
+    // 其他游戏试玩模拟
     function handlePlayGame(gameName) {
         showMessage(`🎮 正在跳转至「${gameName}」游戏大厅，街机模拟器加载中... 稍后即可开玩！`);
     }
@@ -768,13 +783,15 @@
             if(gameTitle) handlePlayGame(gameTitle);
         });
     });
-    document.querySelectorAll('.game-card').forEach(card => {
+    document.querySelectorAll('.game-card:not(#specialDownloadCard)').forEach(card => {
+        // 除了全盘传说卡片之外的其他卡片，点击卡片同样触发试玩（因为全盘传说卡片已设为下载引导）
         card.addEventListener('click', (e) => {
-            if (e.target.classList.contains('game-play')) return;
+            if (e.target.classList.contains('play-btn')) return;
             const game = card.getAttribute('data-game') || card.querySelector('h3')?.innerText;
             if(game) handlePlayGame(game);
         });
     });
+
     // 主要功能按钮
     document.getElementById('mainPlayBtn')?.addEventListener('click', () => showMessage("✨ 欢迎进入爱玩游戏厅，海量街机游戏免费畅玩！"));
     document.getElementById('tourBtn')?.addEventListener('click', () => showMessage("🏆 本周赛事：『复古格斗大赛』冠军可获得限定摇杆 + 10000街机币！点击报名即将开放。"));
