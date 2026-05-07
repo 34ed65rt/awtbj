@@ -39,12 +39,6 @@
             background: #ff9f2e;
         }
 
-        /* 复古像素字体用于标题点缀 */
-        .pixel-font {
-            font-family: 'Press Start 2P', cursive;
-            letter-spacing: 1px;
-        }
-
         .container {
             max-width: 1300px;
             margin: 0 auto;
@@ -106,7 +100,7 @@
             text-shadow: 0 0 5px #f5b042;
         }
 
-        /* Hero 炫酷区域 */
+        /* Hero 区域 */
         .hero {
             display: flex;
             flex-wrap: wrap;
@@ -147,44 +141,6 @@
             max-width: 500px;
             margin-bottom: 32px;
         }
-        .btn-group {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        .btn-primary {
-            background: linear-gradient(95deg, #f5a623, #f5b042);
-            border: none;
-            padding: 12px 28px;
-            font-weight: 700;
-            font-size: 1rem;
-            border-radius: 60px;
-            color: #0b0c1a;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 6px 14px rgba(245, 176, 66, 0.3);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 20px rgba(245, 176, 66, 0.4);
-        }
-        .btn-outline {
-            background: transparent;
-            border: 2px solid #f5b042;
-            padding: 10px 26px;
-            font-weight: 600;
-            border-radius: 60px;
-            color: #f5b042;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .btn-outline:hover {
-            background: #f5b04220;
-            transform: translateY(-2px);
-        }
         .hero-stats {
             display: flex;
             gap: 28px;
@@ -220,7 +176,7 @@
             filter: drop-shadow(0 0 12px #ffaa33);
         }
 
-        /* 游戏展示区 */
+        /* 游戏库展示区 (仅游戏库页面显示下载卡片) */
         .section-title {
             text-align: center;
             font-size: 2.2rem;
@@ -254,7 +210,6 @@
             box-shadow: 0 16px 30px -8px rgba(0,0,0,0.5), 0 0 0 1px rgba(245,176,66,0.3);
             background: rgba(30, 32, 70, 0.8);
         }
-        /* 展示图容器样式 */
         .game-img {
             width: 100%;
             height: 140px;
@@ -313,7 +268,7 @@
             color: #0b0c1a;
         }
 
-        /* 街机特色区 + 联系/下载专区融合 */
+        /* 街机特色区 */
         .arcade-feature {
             background: linear-gradient(105deg, #11132b, #191c3f);
             border-radius: 48px;
@@ -352,17 +307,18 @@
             font-family: 'Press Start 2P', cursive;
             color: #FFD966;
         }
-        /* 客服&群组&下载条 */
-        .contact-download-bar {
+
+        /* 客服&群组 */
+        .contact-bar {
             background: #0e1028;
             border-radius: 48px;
             margin: 20px 0 60px;
             padding: 28px 32px;
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            gap: 20px;
+            gap: 30px;
             border: 1px solid rgba(245,176,66,0.5);
             box-shadow: 0 8px 18px rgba(0,0,0,0.3);
         }
@@ -371,7 +327,7 @@
             align-items: center;
             gap: 12px;
             background: #1a1c3a;
-            padding: 8px 20px;
+            padding: 8px 24px;
             border-radius: 60px;
             transition: 0.2s;
             cursor: pointer;
@@ -390,35 +346,8 @@
             font-weight: bold;
             color: #ffeaaf;
         }
-        .download-apk-btn {
-            background: #f5b042;
-            border: none;
-            padding: 14px 28px;
-            border-radius: 60px;
-            font-weight: 800;
-            font-size: 1.1rem;
-            color: #0b0c1a;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 4px 12px rgba(245,176,66,0.4);
-        }
-        .download-apk-btn:hover {
-            transform: scale(1.02);
-            background: #ffc462;
-            box-shadow: 0 8px 20px rgba(245,176,66,0.6);
-        }
-        .group-hint {
-            font-size: 0.8rem;
-            background: #2a2c55;
-            padding: 4px 12px;
-            border-radius: 60px;
-            text-align: center;
-        }
 
-        /* 新闻与活动 */
+        /* 新闻订阅 */
         .newsletter {
             background: #0f1029;
             border-radius: 40px;
@@ -452,7 +381,6 @@
             border-color: #f5b042;
         }
 
-        /* 页脚 */
         footer {
             border-top: 1px solid #2a2c55;
             padding: 40px 0 30px;
@@ -476,34 +404,14 @@
             color: #f5b042;
         }
 
-        /* 响应式 */
         @media (max-width: 800px) {
-            .hero-content h2 {
-                font-size: 2.2rem;
-            }
-            .navbar {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .nav-links {
-                gap: 20px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .section-title {
-                font-size: 1.8rem;
-            }
-            .contact-download-bar {
-                flex-direction: column;
-                align-items: stretch;
-                text-align: center;
-            }
-            .download-apk-btn {
-                justify-content: center;
-            }
+            .hero-content h2 { font-size: 2.2rem; }
+            .navbar { flex-direction: column; gap: 15px; }
+            .nav-links { gap: 20px; justify-content: center; }
+            .section-title { font-size: 1.8rem; }
+            .contact-bar { flex-direction: column; align-items: stretch; text-align: center; }
         }
 
-        /* 模拟toast通知 */
         .toast-msg {
             position: fixed;
             bottom: 30px;
@@ -517,16 +425,18 @@
             color: #ffeaaf;
             font-weight: 500;
             z-index: 1000;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            transition: 0.2s;
             font-size: 0.9rem;
             pointer-events: none;
         }
-        button {
-            cursor: pointer;
+        button { cursor: pointer; }
+        a { cursor: pointer; }
+        
+        /* 页面切换（首页/游戏库）简单显示控制 */
+        .page {
+            transition: 0.2s;
         }
-        a {
-            cursor: pointer;
+        .hidden-page {
+            display: none;
         }
     </style>
 </head>
@@ -548,300 +458,251 @@
         </ul>
     </nav>
 
-    <!-- Hero 主视觉 -->
-    <div class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-bolt"></i> 限时免费畅玩
+    <!-- ========================= 首页页面（无下载内容） ========================= -->
+    <div id="homePage" class="page">
+        <!-- Hero 主视觉 -->
+        <div class="hero">
+            <div class="hero-content">
+                <div class="hero-badge"><i class="fas fa-bolt"></i> 限时免费畅玩</div>
+                <h2>重温街机黄金时代，<span class="hero-gradient">释放你的玩家之魂</span></h2>
+                <p>海量经典游戏 + 最新潮流街机，每周赛事、高分榜挑战，和朋友一起感受最纯粹的快乐！</p>
+                <div class="hero-stats">
+                    <div class="stat"><div class="number">280+</div><div>经典游戏</div></div>
+                    <div class="stat"><div class="number">1.2M</div><div>活跃玩家</div></div>
+                    <div class="stat"><div class="number">24/7</div><div>在线对战</div></div>
+                </div>
             </div>
-            <h2>重温街机黄金时代，<span class="hero-gradient">释放你的玩家之魂</span></h2>
-            <p>海量经典游戏 + 最新潮流街机，每周赛事、高分榜挑战，和朋友一起感受最纯粹的快乐！</p>
-            <div class="btn-group">
-                <button class="btn-primary" id="mainPlayBtn"><i class="fas fa-play"></i> 立即开玩</button>
-                <button class="btn-outline" id="tourBtn"><i class="fas fa-trophy"></i> 查看赛事</button>
-            </div>
-            <div class="hero-stats">
-                <div class="stat"><div class="number">280+</div><div>经典游戏</div></div>
-                <div class="stat"><div class="number">1.2M</div><div>活跃玩家</div></div>
-                <div class="stat"><div class="number">24/7</div><div>在线对战</div></div>
-            </div>
-        </div>
-        <div class="hero-image">
-            <div class="gamepad-3d">
-                <i class="fas fa-joystick"></i>
+            <div class="hero-image">
+                <div class="gamepad-3d"><i class="fas fa-joystick"></i></div>
             </div>
         </div>
-    </div>
 
-    <!-- 游戏推荐区: 全盘传说 & 海洋竞技 展示图分别调取根目录 2.png 和 1.png -->
-    <div class="section-title">✨ 热门街机精选 ✨</div>
-    <div class="section-sub">点击对应按钮，立即体验双倍快乐 | 独立下载通道</div>
-    <div class="games-grid" id="gamesGrid">
-        <!-- 游戏卡片 1 - 全盘传说：展示图 2.png，下载链接 https://download.ttl718.com/ -->
-        <div class="game-card" id="legendGameCard">
-            <div class="game-img" style="background-image: url('2.png');"></div>
-            <h3>全盘传说 · 1币畅玩</h3>
-            <p>下载后输入邀请码LZTIVA领168小铁片。首充任意金额。找客服再领1000（必须绑定邀请码才能领）</p>
-            <span class="game-tag">🔥 重磅推荐 · 全平台下载</span>
-            <button class="play-btn" id="legendDownloadBtn"><i class="fas fa-download"></i> 下载 全盘传说.apk.1</button>
+        <!-- 首页展示普通街机游戏推荐（仅为预览卡片，不带下载功能） -->
+        <div class="section-title">✨ 热门街机推荐 ✨</div>
+        <div class="section-sub">点击「试玩」立即体验经典街机乐趣</div>
+        <div class="games-grid" id="homeGamesGrid">
+            <div class="game-card" data-game="拳皇'97">
+                <div class="game-icon"><i class="fas fa-users"></i></div>
+                <h3>拳皇'97</h3>
+                <p>三人小队，经典连招，人气草薙京、八神庵集结！</p>
+                <span class="game-tag">格斗 · 竞技</span>
+                <button class="play-btn game-play-home">⚡ 立即试玩</button>
+            </div>
+            <div class="game-card" data-game="恐龙快打">
+                <div class="game-icon"><i class="fas fa-dragon"></i></div>
+                <h3>恐龙快打</h3>
+                <p>横版动作清版神作，拳拳到肉，复古画风再现。</p>
+                <span class="game-tag">动作 · 合作</span>
+                <button class="play-btn game-play-home">⚡ 立即试玩</button>
+            </div>
+            <div class="game-card" data-game="雷电战机">
+                <div class="game-icon"><i class="fas fa-space-shuttle"></i></div>
+                <h3>雷电战机</h3>
+                <p>飞行射击天花板，华丽弹幕，挑战你的反应极限。</p>
+                <span class="game-tag">射击 · 雷电</span>
+                <button class="play-btn game-play-home">⚡ 立即试玩</button>
+            </div>
+            <div class="game-card" data-game="吃豆人锦标赛">
+                <div class="game-icon"><i class="fas fa-circle-notch"></i></div>
+                <h3>吃豆人锦标赛</h3>
+                <p>经典迷宫追逐，挑战最高分，萌趣与速度并存。</p>
+                <span class="game-tag">休闲 · 经典</span>
+                <button class="play-btn game-play-home">⚡ 立即试玩</button>
+            </div>
         </div>
         
-        <!-- 游戏卡片 2 - 海洋竞技：展示图 1.png，跳转链接 https://app.gxgenda.cn/dw -->
-        <div class="game-card" id="oceanGameCard">
-            <div class="game-img" style="background-image: url('1.png');"></div>
-            <h3>海洋竞技 · 享受电玩乐趣</h3>
-            <p>海洋竞技是一款真实的线上电玩竞技平台，通过实时、高清、稳定的物联网技术，让更多喜爱街机的朋友可以在线上进行对战竞技的一款软件。</p>
-            <span class="game-tag">竞技 · 海洋</span>
-            <button class="play-btn" id="oceanGameBtn">🏄 立即挑战海洋之巅</button>
+        <!-- 客服 & 群组（首页也显示，但无下载按钮） -->
+        <div class="contact-bar">
+            <div class="contact-item" id="contactQQItemHome">
+                <i class="fab fa-qq"></i>
+                <span>客服QQ：</span>
+                <small>3909103177</small>
+                <i class="fas fa-copy" style="font-size: 12px; opacity: 0.7;"></i>
+            </div>
+            <div class="contact-item" id="groupQQItemHome">
+                <i class="fas fa-users"></i>
+                <span>爱玩推币机群：</span>
+                <small>1055102055</small>
+                <i class="fas fa-copy" style="font-size: 12px; opacity: 0.7;"></i>
+            </div>
+        </div>
+
+        <!-- 街机特色/在线人数 -->
+        <div class="arcade-feature">
+            <div class="feature-text">
+                <h3><i class="fas fa-chalkboard-user"></i> 实时街机大厅</h3>
+                <p>现在同时在线一起玩的人数正在飙升！复古派对、在线联机，今日高分榜挑战者层出不穷。</p>
+                <button class="btn-outline" id="joinArcadeBtnHome" style="margin-top: 20px;"><i class="fas fa-sign-in-alt"></i> 进入街机大厅</button>
+            </div>
+            <div class="counter">
+                <div><i class="fas fa-user-astronaut"></i> 在线玩家</div>
+                <div class="counter-number" id="onlineCounterHome">2459</div>
+                <div style="font-size:0.7rem;">🔥 较昨日 +18%</div>
+            </div>
+        </div>
+
+        <div class="newsletter">
+            <h3><i class="fas fa-envelope-open-text"></i> 不要错过新游 & 赛事</h3>
+            <p>每周送出街机币、限定主题皮肤，抢先体验未发布游戏！</p>
+            <div class="input-group">
+                <input type="email" placeholder="您的电子邮箱" id="emailInputHome">
+                <button class="btn-primary" id="subscribeBtnHome"><i class="fas fa-paper-plane"></i> 订阅福利</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================= 游戏库页面（包含下载内容） ========================= -->
+    <div id="gamesPage" class="page hidden-page">
+        <div class="section-title">🎮 游戏库 · 专属下载区 🎮</div>
+        <div class="section-sub">点击任意卡片或按钮，获取完整游戏客户端</div>
+        <div class="games-grid" id="gamesGrid">
+            <!-- 全盘传说：展示图 2.png，下载链接 https://download.ttl718.com/ -->
+            <div class="game-card" id="legendGameCard">
+                <div class="game-img" style="background-image: url('2.png');"></div>
+                <h3>全盘传说 · 终极觉醒</h3>
+                <p>现象级街机格斗大作，极致连招与炫酷特效！点击下方按钮获取完整客户端。</p>
+                <span class="game-tag">🔥 重磅推荐 · 全平台下载</span>
+                <button class="play-btn" id="legendDownloadBtn"><i class="fas fa-download"></i> 下载 全盘传说.apk.1</button>
+            </div>
+            <!-- 海洋竞技：展示图 1.png，跳转链接 https://app.gxgenda.cn/dw -->
+            <div class="game-card" id="oceanGameCard">
+                <div class="game-img" style="background-image: url('1.png');"></div>
+                <h3>海洋竞技 · 激浪对决</h3>
+                <p>深海竞速+街机格斗，驾驭海兽，释放浪潮技能，与全球玩家展开水上大乱斗！</p>
+                <span class="game-tag">竞技 · 海洋</span>
+                <button class="play-btn" id="oceanGameBtn">🏄 立即挑战海洋之巅</button>
+            </div>
+            <!-- 额外展示其他经典游戏预览卡片（仅供展示，无实际下载） -->
+            <div class="game-card" data-game="拳皇'97">
+                <div class="game-icon"><i class="fas fa-users"></i></div>
+                <h3>拳皇'97</h3>
+                <p>经典格斗游戏，即将上架街机对战平台。</p>
+                <span class="game-tag">格斗 · 即将登场</span>
+                <button class="play-btn game-play-lib">🎮 敬请期待</button>
+            </div>
+            <div class="game-card" data-game="恐龙快打">
+                <div class="game-icon"><i class="fas fa-dragon"></i></div>
+                <h3>恐龙快打</h3>
+                <p>经典横版动作，怀旧必玩。</p>
+                <span class="game-tag">动作 · 即将登场</span>
+                <button class="play-btn game-play-lib">🎮 敬请期待</button>
+            </div>
         </div>
         
-        <!-- 其他经典卡片保持不变（无图版本，保留原有图标风格） -->
-        <div class="game-card" data-game="拳皇'97">
-            <div class="game-icon"><i class="fas fa-users"></i></div>
-            <h3>拳皇'97</h3>
-            <p>三人小队，经典连招，人气草薙京、八神庵集结！</p>
-            <span class="game-tag">格斗 · 竞技</span>
-            <button class="play-btn game-play">⚡ 立即试玩</button>
+        <!-- 客服组（游戏库同样显示联系方式） -->
+        <div class="contact-bar">
+            <div class="contact-item" id="contactQQItemLib">
+                <i class="fab fa-qq"></i><span>客服QQ：</span><small>3909103177</small><i class="fas fa-copy"></i>
+            </div>
+            <div class="contact-item" id="groupQQItemLib">
+                <i class="fas fa-users"></i><span>爱玩推币机群：</span><small>1055102055</small><i class="fas fa-copy"></i>
+            </div>
         </div>
-        <div class="game-card" data-game="恐龙快打">
-            <div class="game-icon"><i class="fas fa-dragon"></i></div>
-            <h3>恐龙快打</h3>
-            <p>横版动作清版神作，拳拳到肉，复古画风再现。</p>
-            <span class="game-tag">动作 · 合作</span>
-            <button class="play-btn game-play">⚡ 立即试玩</button>
-        </div>
-        <div class="game-card" data-game="雷电战机">
-            <div class="game-icon"><i class="fas fa-space-shuttle"></i></div>
-            <h3>雷电战机</h3>
-            <p>飞行射击天花板，华丽弹幕，挑战你的反应极限。</p>
-            <span class="game-tag">射击 · 雷电</span>
-            <button class="play-btn game-play">⚡ 立即试玩</button>
-        </div>
-        <div class="game-card" data-game="吃豆人锦标赛">
-            <div class="game-icon"><i class="fas fa-circle-notch"></i></div>
-            <h3>吃豆人锦标赛</h3>
-            <p>经典迷宫追逐，挑战最高分，萌趣与速度并存。</p>
-            <span class="game-tag">休闲 · 经典</span>
-            <button class="play-btn game-play">⚡ 立即试玩</button>
-        </div>
-    </div>
-
-    <!-- 客服 QQ + 推币机群 + 辅助信息（底部不再重复全盘传说下载按钮，避免混淆）-->
-    <div class="contact-download-bar">
-        <div class="contact-item" id="contactQQItem">
-            <i class="fab fa-qq"></i>
-            <span>客服QQ：</span>
-            <small>3909103177</small>
-            <i class="fas fa-copy" style="font-size: 12px; opacity: 0.7;"></i>
-        </div>
-        <div class="contact-item" id="groupQQItem">
-            <i class="fas fa-users"></i>
-            <span>爱玩推币机群：</span>
-            <small>1055102055</small>
-            <i class="fas fa-copy" style="font-size: 12px; opacity: 0.7;"></i>
-        </div>
-        <div class="group-hint" style="background:#1f2145;">
-            <i class="fas fa-info-circle"></i> 官方下载通道请点击上方游戏卡片对应按钮
-        </div>
-    </div>
-
-    <!-- 街机特色/在线人数 -->
-    <div class="arcade-feature">
-        <div class="feature-text">
-            <h3><i class="fas fa-chalkboard-user"></i> 实时街机大厅</h3>
-            <p>现在同时在线一起玩的人数正在飙升！复古派对、在线联机，今日高分榜挑战者层出不穷。加入我们，与老友新朋一起夺榜。</p>
-            <button class="btn-outline" id="joinArcadeBtn" style="margin-top: 20px;"><i class="fas fa-sign-in-alt"></i> 进入街机大厅</button>
-        </div>
-        <div class="counter">
-            <div><i class="fas fa-user-astronaut"></i> 在线玩家</div>
-            <div class="counter-number" id="onlineCounter">2459</div>
-            <div style="font-size:0.7rem;">🔥 较昨日 +18%</div>
-        </div>
-    </div>
-
-    <!-- 订阅与活动 -->
-    <div class="newsletter">
-        <h3><i class="fas fa-envelope-open-text"></i> 不要错过新游 & 赛事</h3>
-        <p>每周送出街机币、限定主题皮肤，抢先体验未发布游戏！</p>
-        <div class="input-group">
-            <input type="email" placeholder="您的电子邮箱" id="emailInput">
-            <button class="btn-primary" id="subscribeBtn"><i class="fas fa-paper-plane"></i> 订阅福利</button>
-        </div>
-        <small style="opacity:0.6;">订阅即代表同意接收游戏资讯，随时退订。</small>
     </div>
 
     <footer>
-        <div class="footer-col">
-            <h4><i class="fas fa-gamepad"></i> 爱玩游戏厅</h4>
-            <p>© 2025 复古与科技融合的线上街机乐园。</p>
-            <p>All trademarks are property of their owners.</p>
-        </div>
-        <div class="footer-col">
-            <h4>快速链接</h4>
-            <p>关于我们 | 高分排行榜 | 活动规则</p>
-            <p>商务合作 | 帮助中心</p>
-        </div>
+        <div class="footer-col"><h4><i class="fas fa-gamepad"></i> 爱玩游戏厅</h4><p>© 2025 复古与科技融合的线上街机乐园。</p></div>
+        <div class="footer-col"><h4>快速链接</h4><p>关于我们 | 高分排行榜 | 活动规则</p></div>
         <div class="footer-col social-icons">
-            <i class="fab fa-discord"></i>
-            <i class="fab fa-twitter"></i>
-            <!-- 哔哩哔哩图标：跳转到指定B站空间 -->
-            <i class="fab fa-bilibili" id="biliIcon" style="cursor: pointer;"></i>
-            <i class="fab fa-tiktok"></i>
+            <i class="fab fa-discord"></i><i class="fab fa-twitter"></i>
+            <i class="fab fa-bilibili" id="biliIconFooter" style="cursor: pointer;"></i><i class="fab fa-tiktok"></i>
         </div>
     </footer>
 </div>
 
 <script>
-    // 展示消息通知
+    // 页面切换逻辑
+    const homePage = document.getElementById('homePage');
+    const gamesPage = document.getElementById('gamesPage');
+    const navHomeBtn = document.getElementById('nav-home');
+    const navGamesBtn = document.getElementById('nav-games');
+    const navEvent = document.getElementById('nav-event');
+    const navJoin = document.getElementById('nav-join');
+
+    function showHome() { homePage.classList.remove('hidden-page'); gamesPage.classList.add('hidden-page'); }
+    function showGames() { homePage.classList.add('hidden-page'); gamesPage.classList.remove('hidden-page'); }
+    navHomeBtn.addEventListener('click', (e) => { e.preventDefault(); showHome(); showMessage("🏠 返回首页，街机欢乐不间断～"); });
+    navGamesBtn.addEventListener('click', (e) => { e.preventDefault(); showGames(); showMessage("🎮 游戏库专区：全盘传说 & 海洋竞技 官方下载通道开启"); });
+    navEvent.addEventListener('click', (e) => { e.preventDefault(); showMessage("⚡ 本周赛事：『复古格斗大赛』冠军大奖等你拿！"); });
+    navJoin.addEventListener('click', (e) => { e.preventDefault(); showMessage("👑 会员中心即将开启，敬请期待专属特权"); });
+
+    // toast 通知
     function showMessage(text, isError = false) {
         let toast = document.createElement('div');
         toast.className = 'toast-msg';
         toast.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-circle-info'}"></i> ${text}`;
         document.body.appendChild(toast);
-        setTimeout(() => {
-            toast.style.opacity = '0';
-            setTimeout(() => toast.remove(), 300);
-        }, 2800);
+        setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 2800);
     }
 
-    // 复制文本功能
+    // 复制功能通用
     function copyToClipboard(text, successMsg) {
-        navigator.clipboard.writeText(text).then(() => {
-            showMessage(successMsg || `✅ 已复制: ${text}`);
-        }).catch(() => {
-            showMessage("⚠️ 无法自动复制，请手动复制", true);
-        });
+        navigator.clipboard.writeText(text).then(() => showMessage(successMsg || `✅ 已复制: ${text}`)).catch(() => showMessage("⚠️ 复制失败，请手动复制", true));
     }
+    // 绑定客服与群组 (首页/游戏库)
+    const qqItems = document.querySelectorAll('[id^="contactQQItem"]');
+    const groupItems = document.querySelectorAll('[id^="groupQQItem"]');
+    qqItems.forEach(el => el.addEventListener('click', () => copyToClipboard('3909103177', '✅ 客服QQ 3909103177 已复制')));
+    groupItems.forEach(el => el.addEventListener('click', () => copyToClipboard('1055102055', '🎮 群号 1055102055 已复制，欢迎加入')));
 
-    // 客服QQ点击复制
-    const qqItem = document.getElementById('contactQQItem');
-    if(qqItem) qqItem.addEventListener('click', () => copyToClipboard('3909103177', '✅ 客服QQ 3909103177 已复制，可添加好友咨询游戏问题'));
-
-    // 推币机群点击复制
-    const groupItem = document.getElementById('groupQQItem');
-    if(groupItem) groupItem.addEventListener('click', () => copyToClipboard('1055102055', '🎮 爱玩推币机群号 1055102055 已复制，打开QQ加入一起推币！'));
-
-    // --------------------------------------------------------------
-    // 1. 全盘传说独立下载：跳转 https://download.ttl718.com/
-    const LEGEND_DOWNLOAD_URL = 'https://download.ttl718.com/';
-    function redirectToLegendDownload() {
-        window.open(LEGEND_DOWNLOAD_URL, '_blank');
-        showMessage(`🔥 正在前往「全盘传说」官方下载页，获取完整客户端！`, false);
-    }
+    // ----------------- 游戏库下载逻辑（完全独立）-----------------
+    // 全盘传说跳转 https://download.ttl718.com/
     const legendBtn = document.getElementById('legendDownloadBtn');
     const legendCard = document.getElementById('legendGameCard');
-    if(legendBtn) {
-        legendBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            redirectToLegendDownload();
-        });
-    }
-    if(legendCard) {
-        legendCard.addEventListener('click', (e) => {
-            if(e.target === legendBtn || legendBtn.contains(e.target)) return;
-            redirectToLegendDownload();
-        });
-    }
+    if(legendBtn) legendBtn.addEventListener('click', (e) => { e.stopPropagation(); window.open('https://download.ttl718.com/', '_blank'); showMessage("🔥 正在前往「全盘传说」官方下载页"); });
+    if(legendCard) legendCard.addEventListener('click', (e) => { if(e.target === legendBtn || legendBtn.contains(e.target)) return; window.open('https://download.ttl718.com/', '_blank'); showMessage("🔥 全盘传说下载页面已打开"); });
     
-    // 2. 海洋竞技独立跳转： https://app.gxgenda.cn/dw
-    const OCEAN_REDIRECT_URL = 'https://app.gxgenda.cn/dw';
-    function redirectToOceanGame() {
-        window.open(OCEAN_REDIRECT_URL, '_blank');
-        showMessage(`🌊 正在前往「海洋竞技」特约入口，激浪对决等你挑战！`, false);
-    }
+    // 海洋竞技跳转 https://app.gxgenda.cn/dw
     const oceanBtn = document.getElementById('oceanGameBtn');
     const oceanCardElem = document.getElementById('oceanGameCard');
-    if(oceanBtn) {
-        oceanBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            redirectToOceanGame();
-        });
-    }
-    if(oceanCardElem) {
-        oceanCardElem.addEventListener('click', (e) => {
-            if(e.target === oceanBtn || oceanBtn.contains(e.target)) return;
-            redirectToOceanGame();
-        });
-    }
-    // --------------------------------------------------------------
+    if(oceanBtn) oceanBtn.addEventListener('click', (e) => { e.stopPropagation(); window.open('https://app.gxgenda.cn/dw', '_blank'); showMessage("🌊 正在前往「海洋竞技」特约入口"); });
+    if(oceanCardElem) oceanCardElem.addEventListener('click', (e) => { if(e.target === oceanBtn || oceanBtn.contains(e.target)) return; window.open('https://app.gxgenda.cn/dw', '_blank'); showMessage("🌊 海洋竞技，激浪对决！"); });
 
-    // 哔哩哔哩图标跳转指定空间
-    const biliIcon = document.getElementById('biliIcon');
-    if(biliIcon) {
-        biliIcon.addEventListener('click', () => {
-            const biliUrl = 'https://space.bilibili.com/3546689344375658?spm_id_from=333.337.search-card.all.click';
-            window.open(biliUrl, '_blank');
-            showMessage('🚀 正在前往B站官方空间，发现更多游戏幕后&精彩视频~', false);
-        });
-    }
-
-    // 模拟在线人数波动
-    let onlinePeople = 2459;
-    const counterSpan = document.getElementById('onlineCounter');
-    setInterval(() => {
-        let fluctuation = Math.floor(Math.random() * 40) - 15;
-        let newVal = onlinePeople + fluctuation;
-        if (newVal < 2100) newVal = 2100;
-        if (newVal > 4200) newVal = 4200;
-        onlinePeople = newVal;
-        if (counterSpan) counterSpan.innerText = onlinePeople;
-    }, 6200);
-
-    // 其他经典游戏试玩模拟 (拳皇、恐龙快打、雷电战机、吃豆人)
-    function handlePlayGame(gameName) {
-        showMessage(`🎮 正在跳转至「${gameName}」游戏大厅，街机模拟器加载中... 稍后即可开玩！`);
-    }
-    document.querySelectorAll('.game-play').forEach(btn => {
+    // 首页游戏试玩模拟（纯娱乐，无下载）
+    document.querySelectorAll('.game-play-home').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
-            const card = btn.closest('.game-card');
-            const gameTitle = card?.getAttribute('data-game');
-            if(gameTitle && gameTitle !== '全盘传说' && gameTitle !== '海洋竞技') {
-                handlePlayGame(gameTitle);
-            }
+            showMessage("🎮 试玩版即将开放，请前往「游戏库」下载完整客户端体验重磅新游！");
         });
     });
-    // 其他卡片点击试玩（排除全盘传说和海洋竞技卡片，因为这两个卡片已绑定独立下载跳转）
-    document.querySelectorAll('.game-card').forEach(card => {
-        const gameName = card.getAttribute('data-game');
-        if(gameName && gameName !== '全盘传说' && gameName !== '海洋竞技') {
-            card.addEventListener('click', (e) => {
-                if (e.target.classList.contains('play-btn')) return;
-                if(gameName) handlePlayGame(gameName);
-            });
-        }
+    document.querySelectorAll('.game-play-lib').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showMessage("✨ 该游戏即将上线，敬请期待更多街机经典！");
+        });
     });
 
-    // 主要按钮交互
-    document.getElementById('mainPlayBtn')?.addEventListener('click', () => showMessage("✨ 欢迎进入爱玩游戏厅，海量街机游戏免费畅玩！"));
-    document.getElementById('tourBtn')?.addEventListener('click', () => showMessage("🏆 本周赛事：『复古格斗大赛』冠军可获得限定摇杆 + 10000街机币！"));
-    document.getElementById('joinArcadeBtn')?.addEventListener('click', () => showMessage(`🎉 正在进入3D街机大厅，当前在线玩家：${onlinePeople} 人，热血对战等您加入！`));
+    // 首页在线人数模拟
+    let onlineHome = 2459;
+    const counterHome = document.getElementById('onlineCounterHome');
+    setInterval(() => {
+        let flux = Math.floor(Math.random() * 40) - 15;
+        let newVal = onlineHome + flux;
+        if(newVal < 2100) newVal = 2100;
+        if(newVal > 4200) newVal = 4200;
+        onlineHome = newVal;
+        if(counterHome) counterHome.innerText = onlineHome;
+    }, 5800);
     
-    // 订阅邮箱
-    const subscribeBtn = document.getElementById('subscribeBtn');
-    const emailInput = document.getElementById('emailInput');
-    if(subscribeBtn) {
-        subscribeBtn.addEventListener('click', () => {
-            const email = emailInput.value.trim();
-            if(!email || !email.includes('@') || !email.includes('.')) {
-                showMessage("📧 请输入有效的邮箱地址，接收福利资讯！", true);
-                return;
-            }
-            showMessage(`🎁 订阅成功！爱玩游戏厅福利礼包将发送至 ${email}`);
-            emailInput.value = '';
-        });
-    }
+    // 首页大厅按钮
+    document.getElementById('joinArcadeBtnHome')?.addEventListener('click', () => showMessage(`🎉 街机大厅筹备中，当前在线演示人数 ${onlineHome}，正式版即将开放`));
+    
+    // 订阅邮箱（首页）
+    const subBtn = document.getElementById('subscribeBtnHome');
+    const emailInp = document.getElementById('emailInputHome');
+    if(subBtn) subBtn.addEventListener('click', () => {
+        let email = emailInp.value.trim();
+        if(!email || !email.includes('@')) { showMessage("请输入有效邮箱", true); return; }
+        showMessage(`🎁 订阅成功！福利将发送至 ${email}`);
+        emailInp.value = '';
+    });
 
-    // 导航平滑滚动
-    const navHome = document.getElementById('nav-home');
-    const navGames = document.getElementById('nav-games');
-    const navEvent = document.getElementById('nav-event');
-    const navJoin = document.getElementById('nav-join');
-    if(navHome) navHome.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); showMessage("🏠 回到首页，街机欢乐不间断！"); });
-    if(navGames) navGames.addEventListener('click', (e) => { e.preventDefault(); document.getElementById('gamesGrid')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); showMessage("🎮 挑选你心仪的街机游戏，即刻开战"); });
-    if(navEvent) navEvent.addEventListener('click', (e) => { e.preventDefault(); document.querySelector('.arcade-feature')?.scrollIntoView({ behavior: 'smooth' }); showMessage("⚡ 精彩赛事与高分挑战，丰厚奖励等你捧走"); });
-    if(navJoin) navJoin.addEventListener('click', (e) => { e.preventDefault(); document.querySelector('.newsletter')?.scrollIntoView({ behavior: 'smooth' }); showMessage("👑 会员中心即将开启，专属特权+限定皮肤"); });
+    // B站图标跳转
+    const biliIcon = document.getElementById('biliIconFooter');
+    if(biliIcon) biliIcon.addEventListener('click', () => { window.open('https://space.bilibili.com/3546689344375658?spm_id_from=333.337.search-card.all.click', '_blank'); showMessage("🚀 前往B站官方空间"); });
+    
+    // 默认显示首页，游戏库隐藏下载项完全分离
+    showHome();
 </script>
-
 </body>
 </html>
