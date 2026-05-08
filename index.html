@@ -665,12 +665,12 @@
     }
     function showHome() { hideAll(); homePage.classList.remove('hidden-page'); }
     function showGames() { hideAll(); gamesPage.classList.remove('hidden-page'); }
-    function showApple() { hideAll(); applePage.classList.remove('hidden-page'); showMessage("苹果炸弹独立专区，视频及合作咨询"); }
-    function showEvent() { hideAll(); eventPage.classList.remove('hidden-page'); showMessage("福利码：使用 123456全盘传说 或 123456ww全盘传说"); }
-    function showJoin() { hideAll(); joinPage.classList.remove('hidden-page'); showMessage("大神交流 · 全盘大奖展示"); }
+    function showApple() { hideAll(); applePage.classList.remove('hidden-page'); showMessage("苹果炸弹"); }
+    function showEvent() { hideAll(); eventPage.classList.remove('hidden-page'); showMessage("福利码"); }
+    function showJoin() { hideAll(); joinPage.classList.remove('hidden-page'); showMessage("大神交流"); }
     
     navHome.addEventListener('click', (e) => { e.preventDefault(); showHome(); showMessage("返回首页"); });
-    navGames.addEventListener('click', (e) => { e.preventDefault(); showGames(); showMessage("游戏库：全盘传说 & 海洋竞技下载通道"); });
+    navGames.addEventListener('click', (e) => { e.preventDefault(); showGames(); showMessage("全盘传说 & 海洋竞技下载通道"); });
     navApple.addEventListener('click', (e) => { e.preventDefault(); showApple(); });
     navEvent.addEventListener('click', (e) => { e.preventDefault(); showEvent(); });
     navJoin.addEventListener('click', (e) => { e.preventDefault(); showJoin(); });
