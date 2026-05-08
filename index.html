@@ -79,10 +79,21 @@
             font-weight: 600;
             transition: 0.2s;
             cursor: pointer;
+            font-size: 1rem;
         }
         .nav-links a:hover {
             color: #f5b042;
             text-shadow: 0 0 5px #f5b042;
+        }
+        /* 苹果炸弹导航特殊高亮 */
+        .nav-apple {
+            background: rgba(245, 176, 66, 0.15);
+            padding: 4px 12px;
+            border-radius: 40px;
+            transition: 0.2s;
+        }
+        .nav-apple:hover {
+            background: rgba(245, 176, 66, 0.35);
         }
 
         /* Hero */
@@ -249,19 +260,34 @@
             color: #0b0c1a;
             border: none;
         }
-        /* 视频容器 */
-        .game-video {
-            margin: 15px 0 10px;
-            border-radius: 16px;
-            overflow: hidden;
-            background: #000;
+        /* 视频按钮替代video */
+        .video-btn {
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid #f5b042;
+            border-radius: 40px;
+            padding: 10px 0;
+            margin: 12px 0 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #ffeaaf;
+            transition: 0.2s;
+            cursor: pointer;
         }
-        .game-video video {
-            width: 100%;
-            border-radius: 14px;
-            display: block;
-            max-height: 180px;
-            object-fit: cover;
+        .video-btn i {
+            font-size: 1.2rem;
+            color: #f5b042;
+        }
+        .video-btn:hover {
+            background: #f5b042;
+            color: #0b0c1a;
+        }
+        .video-btn:hover i {
+            color: #0b0c1a;
         }
 
         /* 首页组件 */
@@ -436,6 +462,7 @@
         <ul class="nav-links">
             <li><a href="#" id="nav-home">首页</a></li>
             <li><a href="#" id="nav-games">游戏库</a></li>
+            <li><a href="#" id="nav-apple" class="nav-apple">🍎 苹果炸弹</a></li>   <!-- 苹果炸弹独立导航 -->
             <li><a href="#" id="nav-event">热门活动</a></li>
             <li><a href="#" id="nav-join">会员中心</a></li>
         </ul>
@@ -485,27 +512,25 @@
         </div>
     </div>
 
-    <!-- 游戏库页面（新增苹果炸弹 + 示频mp4 + 展示图） -->
+    <!-- 游戏库页面（所有游戏卡片，含苹果炸弹） -->
     <div id="gamesPage" class="page hidden-page">
         <div class="section-title">🎮 游戏库 · 热门推荐 🎮</div>
         <div class="section-sub">点击卡片获取游戏客户端 | 更多精彩业务招商中</div>
-        <div class="games-grid" id="gamesGrid">
-            <!-- 1. 苹果炸弹 (新增) 展示图根目录png，示例视频mp4 -->
+        <div class="games-grid">
+            <!-- 苹果炸弹卡片：展示图根目录png，视频按钮替换为B站跳转 -->
             <div class="game-card" id="appleBombCard">
                 <div class="game-img" style="background-image: url('apple_bomb.png');"></div>
                 <h3>🍎 苹果炸弹 · 爆破狂欢</h3>
                 <p>经典炸弹人玩法升级，投掷苹果引爆炸裂特效，多人同屏刺激对决！</p>
-                <div class="game-video">
-                    <video controls preload="metadata" poster="apple_bomb.png">
-                        <source src="apple_bomb_demo.mp4" type="video/mp4">
-                        您的浏览器不支持视频播放
-                    </video>
+                <!-- 按钮替代之前video，点击打开B站视频页面 -->
+                <div class="video-btn" id="biliVideoBtn">
+                    <i class="fab fa-bilibili"></i> 观看宣传视频 (B站)
                 </div>
                 <span class="game-tag">🔥 休闲竞技 · 联机对战</span>
                 <button class="play-btn" id="appleBombBtn"><i class="fas fa-bomb"></i> 联系运营商下载</button>
             </div>
 
-            <!-- 2. 全盘传说 -->
+            <!-- 全盘传说 -->
             <div class="game-card" id="legendGameCard">
                 <div class="game-img" style="background-image: url('2.png');"></div>
                 <h3>全盘传说 · 1币畅玩</h3>
@@ -513,7 +538,7 @@
                 <span class="game-tag">🔥 重磅推荐 · 全平台下载</span>
                 <button class="play-btn" id="legendDownloadBtn"><i class="fas fa-download"></i> 下载 全盘传说</button>
             </div>
-            <!-- 3. 海洋竞技 -->
+            <!-- 海洋竞技 -->
             <div class="game-card" id="oceanGameCard">
                 <div class="game-img" style="background-image: url('1.png');"></div>
                 <h3>海洋竞技 · 激浪对决</h3>
@@ -568,17 +593,38 @@
 </div>
 
 <script>
-    // 页面切换
+    // 页面切换逻辑，包含苹果炸弹独立导航跳转（直接滚动到游戏库并平滑定位苹果炸弹卡片）
     const homePage = document.getElementById('homePage');
     const gamesPage = document.getElementById('gamesPage');
     const navHome = document.getElementById('nav-home');
     const navGames = document.getElementById('nav-games');
+    const navApple = document.getElementById('nav-apple');
     const navEvent = document.getElementById('nav-event');
     const navJoin = document.getElementById('nav-join');
+    
     function showHome() { homePage.classList.remove('hidden-page'); gamesPage.classList.add('hidden-page'); }
     function showGames() { homePage.classList.add('hidden-page'); gamesPage.classList.remove('hidden-page'); }
+    // 苹果炸弹选项: 切换到游戏库，并滚动到苹果炸弹卡片位置
+    function focusAppleBomb() {
+        showGames();
+        setTimeout(() => {
+            const appleCard = document.getElementById('appleBombCard');
+            if(appleCard) {
+                appleCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // 高亮提示
+                appleCard.style.transition = '0.3s';
+                appleCard.style.boxShadow = '0 0 0 2px #f5b042, 0 0 0 6px rgba(245,176,66,0.3)';
+                setTimeout(() => { appleCard.style.boxShadow = ''; }, 1500);
+                showMessage("🍎 苹果炸弹·联系运营商QQ 3909103177 获取安装包及福利");
+            } else {
+                showMessage("苹果炸弹卡片加载中", true);
+            }
+        }, 150);
+    }
+    
     navHome.addEventListener('click', (e) => { e.preventDefault(); showHome(); showMessage("🏠 返回首页"); });
     navGames.addEventListener('click', (e) => { e.preventDefault(); showGames(); showMessage("🎮 游戏库·苹果炸弹/全盘传说/海洋竞技"); });
+    navApple.addEventListener('click', (e) => { e.preventDefault(); focusAppleBomb(); });
     navEvent.addEventListener('click', (e) => { e.preventDefault(); showMessage("⚡ 赛事即将开启，详情关注客服QQ 3909103177"); });
     navJoin.addEventListener('click', (e) => { e.preventDefault(); showMessage("👑 会员系统敬请期待"); });
 
@@ -592,34 +638,43 @@
     function copyToClipboard(text, successMsg) {
         navigator.clipboard.writeText(text).then(() => showMessage(successMsg || `✅ 已复制: ${text}`)).catch(() => showMessage("复制失败", true));
     }
-    // 首页客服复制
+    // 客服复制
     const contactQQ = document.getElementById('contactQQItemHome');
     const contactGroup = document.getElementById('groupQQItemHome');
     if(contactQQ) contactQQ.addEventListener('click', () => copyToClipboard('3909103177', '✅ 客服QQ 3909103177 已复制，运营商直达'));
     if(contactGroup) contactGroup.addEventListener('click', () => copyToClipboard('1055102055', '🎮 群号 1055102055 已复制'));
 
-    // 苹果炸弹: 点击按钮或卡片 联系运营商（复制QQ号并提示）
+    // 苹果炸弹: B站视频按钮跳转指定链接 + 运营商下载按钮
+    const biliVideoBtn = document.getElementById('biliVideoBtn');
+    const BILI_VIDEO_URL = 'https://www.bilibili.com/video/BV1gYR5BbEUY/?spm_id_from=333.1387.homepage.video_card.click&vd_source=3b9827ec99a9b36b463caf118b63361c';
+    if(biliVideoBtn) {
+        biliVideoBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            window.open(BILI_VIDEO_URL, '_blank');
+            showMessage("📺 正在打开B站「苹果炸弹」宣传视频");
+        });
+    }
     const appleCard = document.getElementById('appleBombCard');
     const appleBtn = document.getElementById('appleBombBtn');
-    function contactOperator() {
-        copyToClipboard('3909103177', '🍎 苹果炸弹运营商客服QQ 3909103177 已复制，添加好友获取游戏安装包及福利');
+    function contactAppleOperator() {
+        copyToClipboard('3909103177', '🍎 苹果炸弹运营商客服QQ 3909103177 已复制，添加好友获取游戏安装包及专属兑换码');
     }
-    if(appleBtn) appleBtn.addEventListener('click', (e) => { e.stopPropagation(); contactOperator(); });
-    if(appleCard) appleCard.addEventListener('click', (e) => { if(e.target === appleBtn || appleBtn.contains(e.target)) return; contactOperator(); });
+    if(appleBtn) appleBtn.addEventListener('click', (e) => { e.stopPropagation(); contactAppleOperator(); });
+    if(appleCard) appleCard.addEventListener('click', (e) => { if(e.target === appleBtn || appleBtn.contains(e.target) || e.target === biliVideoBtn || biliVideoBtn.contains(e.target)) return; contactAppleOperator(); });
 
-    // 全盘传说跳转下载
+    // 全盘传说
     const legendBtn = document.getElementById('legendDownloadBtn');
     const legendCard = document.getElementById('legendGameCard');
     if(legendBtn) legendBtn.addEventListener('click', (e) => { e.stopPropagation(); window.open('https://download.ttl718.com/', '_blank'); showMessage("🔥 前往全盘传说下载页"); });
     if(legendCard) legendCard.addEventListener('click', (e) => { if(e.target === legendBtn || legendBtn.contains(e.target)) return; window.open('https://download.ttl718.com/', '_blank'); });
     
-    // 海洋竞技跳转
+    // 海洋竞技
     const oceanBtn = document.getElementById('oceanGameBtn');
     const oceanCardElem = document.getElementById('oceanGameCard');
     if(oceanBtn) oceanBtn.addEventListener('click', (e) => { e.stopPropagation(); window.open('https://app.gxgenda.cn/dw', '_blank'); showMessage("🌊 前往海洋竞技"); });
     if(oceanCardElem) oceanCardElem.addEventListener('click', (e) => { if(e.target === oceanBtn || oceanBtn.contains(e.target)) return; window.open('https://app.gxgenda.cn/dw', '_blank'); });
     
-    // 招商卡片: 统一复制客服QQ
+    // 招商卡片
     const investBtns = document.querySelectorAll('.investBtn');
     const investCardsAll = document.querySelectorAll('.invest-card');
     investBtns.forEach(btn => {
@@ -629,7 +684,7 @@
         card.addEventListener('click', (e) => { if(e.target.tagName === 'BUTTON') return; copyToClipboard('3909103177', '📢 商务合作请添加客服QQ 3909103177'); });
     });
 
-    // 在线人数动态
+    // 首页在线人数动态
     let onlineHome = 2459;
     const counterSpan = document.getElementById('onlineCounterHome');
     setInterval(() => {
@@ -651,7 +706,7 @@
         showMessage(`🎁 订阅成功！福利发送至 ${email}`);
         emailInp.value = '';
     });
-    // B站跳转
+    // B站图标跳转
     const biliIcon = document.getElementById('biliIconFooter');
     if(biliIcon) biliIcon.addEventListener('click', () => window.open('https://space.bilibili.com/3546689344375658', '_blank'));
     showHome();
