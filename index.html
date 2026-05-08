@@ -18,13 +18,12 @@
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background-color: #121212;
-            background-image: none; /* 移除过于炫技的渐变保留深色干净基底 */
+            background-image: none;
             color: #e8e8e8;
             line-height: 1.5;
             scroll-behavior: smooth;
         }
 
-        /* 简洁滚动条 */
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -93,7 +92,6 @@
             color: #ca8a04;
         }
         .nav-apple {
-            /* 仅保留轻微高亮，不过分突出 */
             color: #e0a800;
         }
         .nav-apple:hover {
@@ -445,6 +443,50 @@
         button {
             cursor: pointer;
         }
+        /* 交流卡片网格布局 */
+        .exchange-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            max-width: 900px;
+            margin: 0 auto 48px;
+        }
+        .exchange-item {
+            background: #1e1e1e;
+            border-radius: 28px;
+            padding: 24px;
+            border: 1px solid #2c2c2c;
+            transition: 0.2s;
+        }
+        .exchange-item h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .exchange-img {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 20px;
+            margin-top: 16px;
+            background-color: #2a2a2a;
+            min-height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+        .code-block {
+            background: #0f0f0f;
+            padding: 12px 16px;
+            border-radius: 20px;
+            font-family: monospace;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin: 16px 0 8px;
+            border: 1px solid #3a3a3a;
+            display: inline-block;
+        }
         @media (max-width: 700px) {
             .hero-content h2 { font-size: 1.8rem; }
             .navbar { flex-direction: column; gap: 12px; }
@@ -465,7 +507,7 @@
             <li><a href="#" id="nav-games">线上电玩</a></li>
             <li><a href="#" id="nav-apple" class="nav-apple">苹果炸弹</a></li>
             <li><a href="#" id="nav-event">福利码</a></li>
-            <li><a href="#" id="nav-join">交流</a></li>
+            <li><a href="#" id="nav-join">大神交流</a></li>
         </ul>
     </nav>
 
@@ -528,7 +570,7 @@
         <div style="text-align: center; margin: 20px 0 40px; font-size: 0.8rem; color: #888;"><i class="fas fa-qq"></i> 商务咨询客服QQ 3909103177</div>
     </div>
 
-    <!-- 苹果炸弹独立页面：只有宣传、视频、联系运营商，无app下载 -->
+    <!-- 苹果炸弹独立页面 -->
     <div id="applePage" class="page hidden-page">
         <div class="section-title">🍎 苹果炸弹 · 引爆欢乐 🍎</div>
         <div class="section-sub">全新推币玩法，好运连连</div>
@@ -549,6 +591,46 @@
         </div>
     </div>
 
+    <!-- 福利码界面：包含两个兑换码 -->
+    <div id="eventPage" class="page hidden-page">
+        <div class="section-title">🎁 福利码 · 专属兑换 🎁</div>
+        <div class="section-sub">输入兑换码领取游戏内福利</div>
+        <div class="exchange-grid">
+            <div class="exchange-item">
+                <h3><i class="fas fa-ticket-alt"></i> 全盘传说 · 通用码</h3>
+                <div class="code-block">123456全盘传说</div>
+                <p style="margin-top: 8px; color: #aaa;">兑换后可获得游戏内小铁片+新手礼包</p>
+            </div>
+            <div class="exchange-item">
+                <h3><i class="fas fa-gem"></i> 全盘传说 · 尊享码</h3>
+                <div class="code-block">123456ww全盘传说</div>
+                <p style="margin-top: 8px; color: #aaa;">内含额外道具和限定头像框</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 20px; font-size: 0.8rem; color: #777;">更多福利请关注玩家群通知</div>
+    </div>
+
+    <!-- 大神交流界面：包含两个中奖记录+配图 -->
+    <div id="joinPage" class="page hidden-page">
+        <div class="section-title">🏆 大神交流 · 中奖展示 🏆</div>
+        <div class="section-sub">近期全盘传说爆奖瞬间</div>
+        <div class="exchange-grid">
+            <div class="exchange-item">
+                <h3><i class="fas fa-crown"></i> 玩家「风行者」中了全盘奖</h3>
+                <p>爆奖时间：2025-05-08 | 奖池倍数 x1888</p>
+                <div class="exchange-img" style="background-image: url('11.png'); height: 200px;"></div>
+                <div class="game-tag" style="margin-top: 12px;">全盘大奖见证</div>
+            </div>
+            <div class="exchange-item">
+                <h3><i class="fas fa-fire"></i> 玩家「深海猎手」爆出全盘传说</h3>
+                <p>单局赢取 12800 小铁片，登上日榜第一</p>
+                <div class="exchange-img" style="background-image: url('12.png'); height: 200px;"></div>
+                <div class="game-tag" style="margin-top: 12px;">新晋大神 · 全盘传说</div>
+            </div>
+        </div>
+        <div style="text-align: center; margin: 20px 0; font-size: 0.8rem;">加入玩家群分享你的高光时刻</div>
+    </div>
+
     <footer>
         <div><h4 style="font-weight: 500; margin-bottom: 6px;">爱玩游戏厅</h4><p>© 2025 线上街机交流平台</p></div>
         <div><p>关于我们 | 规则说明 | 商务合作</p></div>
@@ -562,25 +644,36 @@
 </div>
 
 <script>
-    // 页面切换逻辑
+    // 页面元素
     const homePage = document.getElementById('homePage');
     const gamesPage = document.getElementById('gamesPage');
     const applePage = document.getElementById('applePage');
+    const eventPage = document.getElementById('eventPage');
+    const joinPage = document.getElementById('joinPage');
     const navHome = document.getElementById('nav-home');
     const navGames = document.getElementById('nav-games');
     const navApple = document.getElementById('nav-apple');
     const navEvent = document.getElementById('nav-event');
     const navJoin = document.getElementById('nav-join');
     
-    function showHome() { homePage.classList.remove('hidden-page'); gamesPage.classList.add('hidden-page'); applePage.classList.add('hidden-page'); }
-    function showGames() { homePage.classList.add('hidden-page'); gamesPage.classList.remove('hidden-page'); applePage.classList.add('hidden-page'); }
-    function showApple() { homePage.classList.add('hidden-page'); gamesPage.classList.add('hidden-page'); applePage.classList.remove('hidden-page'); showMessage("苹果炸弹独立专区，视频及合作咨询"); }
+    function hideAll() {
+        homePage.classList.add('hidden-page');
+        gamesPage.classList.add('hidden-page');
+        applePage.classList.add('hidden-page');
+        eventPage.classList.add('hidden-page');
+        joinPage.classList.add('hidden-page');
+    }
+    function showHome() { hideAll(); homePage.classList.remove('hidden-page'); }
+    function showGames() { hideAll(); gamesPage.classList.remove('hidden-page'); }
+    function showApple() { hideAll(); applePage.classList.remove('hidden-page'); showMessage("苹果炸弹独立专区，视频及合作咨询"); }
+    function showEvent() { hideAll(); eventPage.classList.remove('hidden-page'); showMessage("福利码：使用 123456全盘传说 或 123456ww全盘传说"); }
+    function showJoin() { hideAll(); joinPage.classList.remove('hidden-page'); showMessage("大神交流 · 全盘大奖展示"); }
     
     navHome.addEventListener('click', (e) => { e.preventDefault(); showHome(); showMessage("返回首页"); });
     navGames.addEventListener('click', (e) => { e.preventDefault(); showGames(); showMessage("游戏库：全盘传说 & 海洋竞技下载通道"); });
     navApple.addEventListener('click', (e) => { e.preventDefault(); showApple(); });
-    navEvent.addEventListener('click', (e) => { e.preventDefault(); showMessage("福利码活动关注玩家群通知"); });
-    navJoin.addEventListener('click', (e) => { e.preventDefault(); showMessage("大神交流qq群：1055102055"); });
+    navEvent.addEventListener('click', (e) => { e.preventDefault(); showEvent(); });
+    navJoin.addEventListener('click', (e) => { e.preventDefault(); showJoin(); });
     
     function showMessage(text) {
         let toast = document.createElement('div');
@@ -593,35 +686,34 @@
         navigator.clipboard.writeText(text).then(() => showMessage(msg || `已复制: ${text}`)).catch(() => showMessage("复制失败"));
     }
     
-    // 客服群组复制
+    // 客服复制
     const contactQQ = document.getElementById('contactQQItemHome');
     const contactGroup = document.getElementById('groupQQItemHome');
     if(contactQQ) contactQQ.addEventListener('click', () => copyToClipboard('3909103177', '客服QQ 3909103177 已复制'));
     if(contactGroup) contactGroup.addEventListener('click', () => copyToClipboard('1055102055', '玩家群号 1055102055 已复制'));
     
-    // 苹果炸弹页面组件
+    // 苹果炸弹B站及联系
     const appleBili = document.getElementById('appleBiliBtn');
     if(appleBili) appleBili.addEventListener('click', () => window.open('https://www.bilibili.com/video/BV1gYR5BbEUY/', '_blank'));
     const appleContact = document.getElementById('appleContactBtn');
-    if(appleContact) appleContact.addEventListener('click', () => copyToClipboard('3909103177', '苹果炸弹运营商QQ已复制，咨询价格/合作'));
+    if(appleContact) appleContact.addEventListener('click', () => copyToClipboard('3909103177', '苹果炸弹运营商QQ已复制'));
     const appleContainer = document.querySelector('#applePage .game-card');
     if(appleContainer) appleContainer.addEventListener('click', (e) => {
         if(e.target.closest('button') || e.target.closest('.video-btn')) return;
         copyToClipboard('3909103177', '联系运营商了解苹果炸弹详情');
     });
     
-    // 游戏库下载跳转
+    // 游戏库下载
     const legendBtn = document.getElementById('legendDownloadBtn');
     const legendCard = document.getElementById('legendGameCard');
     if(legendBtn) legendBtn.addEventListener('click', (e) => { e.stopPropagation(); window.open('https://download.ttl718.com/', '_blank'); });
     if(legendCard) legendCard.addEventListener('click', (e) => { if(e.target === legendBtn || legendBtn.contains(e.target)) return; window.open('https://download.ttl718.com/', '_blank'); });
-    
     const oceanBtn = document.getElementById('oceanGameBtn');
     const oceanCard = document.getElementById('oceanGameCard');
     if(oceanBtn) oceanBtn.addEventListener('click', (e) => { e.stopPropagation(); window.open('https://app.gxgenda.cn/dw', '_blank'); });
     if(oceanCard) oceanCard.addEventListener('click', (e) => { if(e.target === oceanBtn || oceanBtn.contains(e.target)) return; window.open('https://app.gxgenda.cn/dw', '_blank'); });
     
-    // 招商卡片统一联系客服
+    // 招商卡片复制
     document.querySelectorAll('.investBtn').forEach(btn => {
         btn.addEventListener('click', (e) => { e.stopPropagation(); copyToClipboard('3909103177', '合作请联系客服QQ'); });
     });
@@ -629,12 +721,11 @@
         card.addEventListener('click', (e) => { if(e.target.tagName === 'BUTTON') return; copyToClipboard('3909103177', '商务合作添加客服QQ'); });
     });
     
-    // 首页在线人数占位（已静默）
     const counterSpan = document.getElementById('onlineCounterHome');
     if(counterSpan) counterSpan.innerText = '即将开放';
-    document.getElementById('joinArcadeBtnHome')?.addEventListener('click', () => showMessage('街机大厅筹备中，敬请期待'));
+    document.getElementById('joinArcadeBtnHome')?.addEventListener('click', () => showMessage('街机大厅筹备中'));
     
-    // 订阅功能
+    // 订阅
     const subBtn = document.getElementById('subscribeBtnHome');
     const emailInp = document.getElementById('emailInputHome');
     if(subBtn) subBtn.addEventListener('click', () => {
