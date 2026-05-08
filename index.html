@@ -462,7 +462,7 @@
         <ul class="nav-links">
             <li><a href="#" id="nav-home">首页</a></li>
             <li><a href="#" id="nav-games">游戏库</a></li>
-            <li><a href="#" id="nav-apple" class="nav-apple">🍎 苹果炸弹</a></li>   <!-- 苹果炸弹独立导航 -->
+            <li><a href="#" id="nav-apple" class="nav-apple">🍎 苹果炸弹</a></li>   
             <li><a href="#" id="nav-event">热门活动</a></li>
             <li><a href="#" id="nav-join">会员中心</a></li>
         </ul>
@@ -512,17 +512,16 @@
         </div>
     </div>
 
-    <!-- 游戏库页面（所有游戏卡片，含苹果炸弹） -->
+    <!-- 游戏库页面 -->
     <div id="gamesPage" class="page hidden-page">
         <div class="section-title">🎮 游戏库 · 热门推荐 🎮</div>
         <div class="section-sub">点击卡片获取游戏客户端 | 更多精彩业务招商中</div>
         <div class="games-grid">
-            <!-- 苹果炸弹卡片：展示图根目录png，视频按钮替换为B站跳转 -->
+            <!-- 苹果炸弹卡片 -->
             <div class="game-card" id="appleBombCard">
                 <div class="game-img" style="background-image: url('apple_bomb.png');"></div>
                 <h3>🍎 苹果炸弹 · 爆破狂欢</h3>
                 <p>经典炸弹人玩法升级，投掷苹果引爆炸裂特效，多人同屏刺激对决！</p>
-                <!-- 按钮替代之前video，点击打开B站视频页面 -->
                 <div class="video-btn" id="biliVideoBtn">
                     <i class="fab fa-bilibili"></i> 观看宣传视频 (B站)
                 </div>
@@ -534,7 +533,7 @@
             <div class="game-card" id="legendGameCard">
                 <div class="game-img" style="background-image: url('2.png');"></div>
                 <h3>全盘传说 · 1币畅玩</h3>
-                <p>下载后输入邀请码LZTIVA领168小铁片。首充任意金额找客服再领1000（绑定后才可领取）</p>
+                <p>下载后输入邀请码LZTIVA领168小铁片。首充任意金额找客服再领1000</p>
                 <span class="game-tag">🔥 重磅推荐 · 全平台下载</span>
                 <button class="play-btn" id="legendDownloadBtn"><i class="fas fa-download"></i> 下载 全盘传说</button>
             </div>
@@ -587,13 +586,14 @@
         <div class="footer-col"><h4>快速链接</h4><p>关于我们 | 高分排行榜 | 活动规则</p></div>
         <div class="footer-col social-icons">
             <i class="fab fa-discord"></i><i class="fab fa-twitter"></i>
-            <i class="fab fa-bilibili" id="biliIconFooter" style="cursor: pointer;"></i><i class="fab fa-tiktok"></i>
+            <i class="fab fa-bilibili" id="biliIconFooter" style="cursor: pointer;"></i>
+            <i class="fab fa-tiktok" id="tiktokIconFooter" style="cursor: pointer;"></i>
         </div>
     </footer>
 </div>
 
 <script>
-    // 页面切换逻辑，包含苹果炸弹独立导航跳转（直接滚动到游戏库并平滑定位苹果炸弹卡片）
+    // 页面切换逻辑
     const homePage = document.getElementById('homePage');
     const gamesPage = document.getElementById('gamesPage');
     const navHome = document.getElementById('nav-home');
@@ -611,7 +611,6 @@
             const appleCard = document.getElementById('appleBombCard');
             if(appleCard) {
                 appleCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                // 高亮提示
                 appleCard.style.transition = '0.3s';
                 appleCard.style.boxShadow = '0 0 0 2px #f5b042, 0 0 0 6px rgba(245,176,66,0.3)';
                 setTimeout(() => { appleCard.style.boxShadow = ''; }, 1500);
@@ -644,7 +643,7 @@
     if(contactQQ) contactQQ.addEventListener('click', () => copyToClipboard('3909103177', '✅ 客服QQ 3909103177 已复制，运营商直达'));
     if(contactGroup) contactGroup.addEventListener('click', () => copyToClipboard('1055102055', '🎮 群号 1055102055 已复制'));
 
-    // 苹果炸弹: B站视频按钮跳转指定链接 + 运营商下载按钮
+    // 苹果炸弹: B站视频按钮跳转 + 运营商下载按钮
     const biliVideoBtn = document.getElementById('biliVideoBtn');
     const BILI_VIDEO_URL = 'https://www.bilibili.com/video/BV1gYR5BbEUY/?spm_id_from=333.1387.homepage.video_card.click&vd_source=3b9827ec99a9b36b463caf118b63361c';
     if(biliVideoBtn) {
@@ -706,9 +705,23 @@
         showMessage(`🎁 订阅成功！福利发送至 ${email}`);
         emailInp.value = '';
     });
-    // B站图标跳转
+    
+    // ------------------- 社交图标跳转 -------------------
+    // B站图标跳转（保持不变）
     const biliIcon = document.getElementById('biliIconFooter');
     if(biliIcon) biliIcon.addEventListener('click', () => window.open('https://space.bilibili.com/3546689344375658', '_blank'));
+    
+    // 抖音图标跳转：指定链接
+    const tiktokIcon = document.getElementById('tiktokIconFooter');
+    const DOUYIN_URL = 'https://www.douyin.com/user/MS4wLjABAAAACgLr89fukya8N5oMjUCOz5ARVprWM3lwCUgeQikqqdQ';
+    if(tiktokIcon) {
+        tiktokIcon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            window.open(DOUYIN_URL, '_blank');
+            showMessage("📱 正在打开「爱玩推币机」抖音主页");
+        });
+    }
+    
     showHome();
 </script>
 </body>
