@@ -3,17 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>爱玩游戏厅 - 街机手游平台 | 苹果炸弹 全盘传说 海洋竞技</title>
-    <!-- 引入现代字体与图标库 -->
+    <title>爱玩游戏厅 - 苹果炸弹 | 全盘传说 | 海洋竞技</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background: linear-gradient(145deg, #0b0c1a 0%, #12132c 100%);
             font-family: 'Inter', sans-serif;
@@ -21,16 +15,11 @@
             line-height: 1.5;
             overflow-x: hidden;
         }
-
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #1e1f3a; border-radius: 10px; }
         ::-webkit-scrollbar-thumb { background: #f5b042; border-radius: 10px; }
 
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 24px; }
 
         /* 导航栏 */
         .navbar {
@@ -41,16 +30,8 @@
             flex-wrap: wrap;
             border-bottom: 2px solid rgba(245, 176, 66, 0.4);
         }
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .logo-icon {
-            font-size: 2.2rem;
-            color: #f5b042;
-            text-shadow: 0 0 8px #ffa500;
-        }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-size: 2.2rem; color: #f5b042; text-shadow: 0 0 8px #ffa500; }
         .logo h1 {
             font-size: 1.8rem;
             font-weight: 800;
@@ -64,15 +45,9 @@
             background: #f5b04220;
             padding: 4px 8px;
             border-radius: 30px;
-            font-weight: 500;
             border-left: 2px solid #f5b042;
         }
-
-        .nav-links {
-            display: flex;
-            gap: 28px;
-            list-style: none;
-        }
+        .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; flex-wrap: wrap; }
         .nav-links a {
             text-decoration: none;
             color: #e0e0ff;
@@ -81,22 +56,16 @@
             cursor: pointer;
             font-size: 1rem;
         }
-        .nav-links a:hover {
-            color: #f5b042;
-            text-shadow: 0 0 5px #f5b042;
-        }
-        /* 苹果炸弹导航特殊高亮 */
+        .nav-links a:hover { color: #f5b042; text-shadow: 0 0 5px #f5b042; }
         .nav-apple {
-            background: rgba(245, 176, 66, 0.15);
-            padding: 4px 12px;
+            background: rgba(245, 176, 66, 0.2);
+            padding: 6px 16px;
             border-radius: 40px;
-            transition: 0.2s;
+            border: 1px solid #f5b04280;
         }
-        .nav-apple:hover {
-            background: rgba(245, 176, 66, 0.35);
-        }
+        .nav-apple:hover { background: rgba(245, 176, 66, 0.4); }
 
-        /* Hero */
+        /* Hero 简化 */
         .hero {
             display: flex;
             flex-wrap: wrap;
@@ -115,75 +84,25 @@
             border-radius: 40px;
             margin-bottom: 20px;
             border: 1px solid #f5b042;
-            color: #ffdd99;
         }
-        .hero-content h2 {
-            font-size: 3.2rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-        .hero-gradient {
-            background: linear-gradient(135deg, #FFF5E0, #FFC857);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .hero-content p {
-            font-size: 1.15rem;
-            color: #c2c2e0;
-            max-width: 500px;
-            margin-bottom: 32px;
-        }
-        .hero-stats {
-            display: flex;
-            gap: 28px;
-            margin-top: 40px;
-        }
-        .stat .number {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #f5b042;
-        }
-        .hero-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-        }
+        .hero-content h2 { font-size: 3.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
+        .hero-gradient { background: linear-gradient(135deg, #FFF5E0, #FFC857); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .hero-content p { font-size: 1.15rem; color: #c2c2e0; max-width: 500px; margin-bottom: 32px; }
+        .hero-stats { display: flex; gap: 28px; margin-top: 40px; }
+        .stat .number { font-size: 1.8rem; font-weight: 800; color: #f5b042; }
+        .hero-image { flex: 1; display: flex; justify-content: center; }
         .gamepad-3d {
             background: radial-gradient(circle at 30% 20%, #2b2d5c, #15172f);
-            width: 280px;
-            height: 280px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 280px; height: 280px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
             border: 2px solid #f5b04288;
         }
-        .gamepad-3d i {
-            font-size: 8rem;
-            color: #FFD966;
-            filter: drop-shadow(0 0 12px #ffaa33);
-        }
+        .gamepad-3d i { font-size: 8rem; color: #FFD966; filter: drop-shadow(0 0 12px #ffaa33); }
 
-        /* 游戏库网格 */
-        .section-title {
-            text-align: center;
-            font-size: 2.2rem;
-            margin: 60px 0 20px;
-            font-weight: 700;
-        }
-        .section-sub {
-            text-align: center;
-            color: #aca9e0;
-            margin-bottom: 48px;
-        }
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-            gap: 32px;
-            margin-bottom: 60px;
-        }
+        /* 游戏库 & 苹果炸弹页面卡片样式一致 */
+        .section-title { text-align: center; font-size: 2.2rem; margin: 60px 0 20px; font-weight: 700; }
+        .section-sub { text-align: center; color: #aca9e0; margin-bottom: 48px; }
+        .games-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 32px; margin-bottom: 60px; }
         .game-card {
             background: rgba(20, 22, 48, 0.65);
             backdrop-filter: blur(3px);
@@ -194,50 +113,12 @@
             border: 1px solid rgba(245, 176, 66, 0.2);
             cursor: pointer;
         }
-        .game-card:hover {
-            transform: translateY(-8px);
-            border-color: #f5b042;
-            box-shadow: 0 16px 30px -8px rgba(0,0,0,0.5);
-            background: rgba(30, 32, 70, 0.8);
-        }
-        .game-img {
-            width: 100%;
-            height: 140px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 20px;
-            margin-bottom: 18px;
-            border: 1px solid rgba(245,176,66,0.3);
-        }
-        .game-icon {
-            font-size: 3.2rem;
-            background: #f5b04220;
-            width: 80px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 30px;
-            margin: 0 auto 18px;
-            color: #ffcd7e;
-        }
-        .game-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 12px;
-        }
-        .game-card p {
-            color: #bbb9e6;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-        }
-        .game-tag {
-            display: inline-block;
-            background: #2a2c55;
-            padding: 4px 12px;
-            border-radius: 40px;
-            font-size: 0.75rem;
-            color: #ffdd99;
-        }
+        .game-card:hover { transform: translateY(-8px); border-color: #f5b042; box-shadow: 0 16px 30px -8px rgba(0,0,0,0.5); background: rgba(30, 32, 70, 0.8); }
+        .game-img { width: 100%; height: 140px; background-size: cover; background-position: center; border-radius: 20px; margin-bottom: 18px; border: 1px solid rgba(245,176,66,0.3); }
+        .game-icon { font-size: 3.2rem; background: #f5b04220; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 30px; margin: 0 auto 18px; color: #ffcd7e; }
+        .game-card h3 { font-size: 1.5rem; margin-bottom: 12px; }
+        .game-card p { color: #bbb9e6; font-size: 0.9rem; margin-bottom: 20px; }
+        .game-tag { display: inline-block; background: #2a2c55; padding: 4px 12px; border-radius: 40px; font-size: 0.75rem; color: #ffdd99; }
         .play-btn {
             margin-top: 18px;
             background: none;
@@ -251,16 +132,8 @@
             width: 100%;
             font-family: inherit;
         }
-        .play-btn:hover {
-            background: #f5b042;
-            color: #0b0c1a;
-        }
-        .invest-tag {
-            background: linear-gradient(95deg, #f5a623, #b57c1a);
-            color: #0b0c1a;
-            border: none;
-        }
-        /* 视频按钮替代video */
+        .play-btn:hover { background: #f5b042; color: #0b0c1a; }
+        .invest-tag { background: linear-gradient(95deg, #f5a623, #b57c1a); color: #0b0c1a; border: none; }
         .video-btn {
             background: rgba(0,0,0,0.6);
             backdrop-filter: blur(8px);
@@ -272,24 +145,13 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            font-size: 0.9rem;
             font-weight: 600;
             color: #ffeaaf;
             transition: 0.2s;
             cursor: pointer;
         }
-        .video-btn i {
-            font-size: 1.2rem;
-            color: #f5b042;
-        }
-        .video-btn:hover {
-            background: #f5b042;
-            color: #0b0c1a;
-        }
-        .video-btn:hover i {
-            color: #0b0c1a;
-        }
-
+        .video-btn:hover { background: #f5b042; color: #0b0c1a; }
+        
         /* 首页组件 */
         .arcade-feature {
             background: linear-gradient(105deg, #11132b, #191c3f);
@@ -303,26 +165,8 @@
             justify-content: space-between;
             border: 1px solid #f5b04240;
         }
-        .feature-text { flex: 2; }
-        .feature-text h3 {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 1.4rem;
-            margin-bottom: 16px;
-        }
-        .counter {
-            flex: 1;
-            background: #00000030;
-            border-radius: 32px;
-            padding: 20px;
-            text-align: center;
-            backdrop-filter: blur(8px);
-        }
-        .counter-number {
-            font-size: 3rem;
-            font-weight: 800;
-            font-family: 'Press Start 2P', cursive;
-            color: #FFD966;
-        }
+        .counter { flex: 1; background: #00000030; border-radius: 32px; padding: 20px; text-align: center; backdrop-filter: blur(8px); }
+        .counter-number { font-size: 3rem; font-weight: 800; font-family: 'Press Start 2P', cursive; color: #FFD966; }
         .contact-bar {
             background: #0e1028;
             border-radius: 48px;
@@ -345,29 +189,9 @@
             cursor: pointer;
             transition: 0.2s;
         }
-        .contact-item i {
-            font-size: 1.6rem;
-            color: #f5b042;
-        }
-        .contact-item small {
-            font-family: monospace;
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #ffeaaf;
-        }
-        .invest-card {
-            background: linear-gradient(145deg, #1e2042, #12142e);
-            border: 1px solid #ffb347;
-        }
-        .invest-card .play-btn {
-            background: #ffb34720;
-            border-color: #ffb347;
-            color: #ffcf8a;
-        }
-        .invest-card .play-btn:hover {
-            background: #ffb347;
-            color: #0b0c1a;
-        }
+        .contact-item i { font-size: 1.6rem; color: #f5b042; }
+        .contact-item small { font-family: monospace; font-size: 1.1rem; font-weight: bold; color: #ffeaaf; }
+        .invest-card { background: linear-gradient(145deg, #1e2042, #12142e); border: 1px solid #ffb347; }
         .newsletter {
             background: #0f1029;
             border-radius: 40px;
@@ -375,22 +199,8 @@
             text-align: center;
             margin: 40px 0 60px;
         }
-        .input-group {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 28px;
-        }
-        .input-group input {
-            padding: 14px 20px;
-            border-radius: 60px;
-            border: none;
-            background: #1e2042;
-            color: white;
-            width: 280px;
-            outline: none;
-        }
+        .input-group { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+        .input-group input { padding: 14px 20px; border-radius: 60px; border: none; background: #1e2042; color: white; width: 280px; outline: none; }
         footer {
             border-top: 1px solid #2a2c55;
             padding: 40px 0 30px;
@@ -399,39 +209,12 @@
             justify-content: space-between;
             gap: 30px;
         }
-        .social-icons i {
-            font-size: 1.6rem;
-            margin-right: 20px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+        .social-icons i { font-size: 1.6rem; margin-right: 20px; cursor: pointer; transition: 0.2s; }
         .social-icons i:hover { color: #f5b042; }
-        .btn-outline {
-            background: transparent;
-            border: 2px solid #f5b042;
-            padding: 10px 26px;
-            border-radius: 60px;
-            color: #f5b042;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .btn-outline:hover {
-            background: #f5b04220;
-        }
-        .btn-primary {
-            background: linear-gradient(95deg, #f5a623, #f5b042);
-            border: none;
-            padding: 12px 28px;
-            border-radius: 60px;
-            font-weight: 700;
-            color: #0b0c1a;
-            cursor: pointer;
-        }
-        @media (max-width: 800px) {
-            .hero-content h2 { font-size: 2.2rem; }
-            .navbar { flex-direction: column; gap: 15px; }
-            .contact-bar { flex-direction: column; }
-        }
+        .btn-outline { background: transparent; border: 2px solid #f5b042; padding: 10px 26px; border-radius: 60px; color: #f5b042; cursor: pointer; transition: 0.2s; }
+        .btn-outline:hover { background: #f5b04220; }
+        .btn-primary { background: linear-gradient(95deg, #f5a623, #f5b042); border: none; padding: 12px 28px; border-radius: 60px; font-weight: 700; color: #0b0c1a; cursor: pointer; }
+        @media (max-width: 800px) { .hero-content h2 { font-size: 2.2rem; } .navbar { flex-direction: column; gap: 15px; } .contact-bar { flex-direction: column; } }
         .page { transition: 0.2s; }
         .hidden-page { display: none; }
         .toast-msg {
@@ -454,87 +237,49 @@
 <body>
 <div class="container">
     <nav class="navbar">
-        <div class="logo">
-            <i class="fas fa-gamepad logo-icon"></i>
-            <h1>爱玩游戏厅</h1>
-            <span>ARCADE・RETRO</span>
-        </div>
+        <div class="logo"><i class="fas fa-gamepad logo-icon"></i><h1>爱玩游戏厅</h1><span>ARCADE</span></div>
         <ul class="nav-links">
             <li><a href="#" id="nav-home">首页</a></li>
             <li><a href="#" id="nav-games">游戏库</a></li>
-            <li><a href="#" id="nav-apple" class="nav-apple">🍎 苹果炸弹</a></li>   
+            <li><a href="#" id="nav-apple" class="nav-apple">🍎 苹果炸弹</a></li>
             <li><a href="#" id="nav-event">热门活动</a></li>
             <li><a href="#" id="nav-join">会员中心</a></li>
         </ul>
     </nav>
 
-    <!-- 首页 -->
+    <!-- ========================= 首页 ========================= -->
     <div id="homePage" class="page">
         <div class="hero">
             <div class="hero-content">
                 <div class="hero-badge"><i class="fas fa-bolt"></i> 电玩交流之都</div>
                 <h2>重温街机黄金时代，<span class="hero-gradient">释放你的玩家之魂</span></h2>
                 <p>海量线上电玩城 + 最新潮流街机，和朋友一起感受最纯粹的快乐！</p>
-                <div class="hero-stats">
-                    <div class="stat"><div class="number">3</div><div>已入住商家</div></div>
-                    <div class="stat"><div class="number">0</div><div>活跃玩家</div></div>
-                    <div class="stat"><div class="number">0</div><div>玩家交流</div></div>
-                </div>
+                <div class="hero-stats"><div class="stat"><div class="number">3</div><div>已入驻商家</div></div><div class="stat"><div class="number">0</div><div>活跃玩家</div></div></div>
             </div>
             <div class="hero-image"><div class="gamepad-3d"><i class="fas fa-joystick"></i></div></div>
         </div>
         <div class="contact-bar">
-            <div class="contact-item" id="contactQQItemHome">
-                <i class="fab fa-qq"></i><span>客服QQ：</span><small>3909103177</small><i class="fas fa-copy"></i>
-            </div>
-            <div class="contact-item" id="groupQQItemHome">
-                <i class="fas fa-users"></i><span>爱玩推币机群：</span><small>1055102055</small><i class="fas fa-copy"></i>
-            </div>
+            <div class="contact-item" id="contactQQItemHome"><i class="fab fa-qq"></i><span>客服QQ：</span><small>3909103177</small><i class="fas fa-copy"></i></div>
+            <div class="contact-item" id="groupQQItemHome"><i class="fas fa-users"></i><span>爱玩推币机群：</span><small>1055102055</small><i class="fas fa-copy"></i></div>
         </div>
         <div class="arcade-feature">
-            <div class="feature-text">
-                <h3><i class="fas fa-chalkboard-user"></i> 实时街机大厅</h3>
-                <p>复古派对、在线联机，高分榜挑战者层出不穷。运营商客服QQ：3909103177</p>
-                <button class="btn-outline" id="joinArcadeBtnHome"><i class="fas fa-sign-in-alt"></i> 进入街机大厅</button>
-            </div>
-            <div class="counter">
-                <div><i class="fas fa-user-astronaut"></i> 在线玩家</div>
-                <div class="counter-number" id="onlineCounterHome">2459</div>
-            </div>
+            <div class="feature-text"><h3><i class="fas fa-chalkboard-user"></i> 实时街机大厅</h3><p>复古派对、在线联机，运营商客服QQ：3909103177</p><button class="btn-outline" id="joinArcadeBtnHome"><i class="fas fa-sign-in-alt"></i> 进入街机大厅</button></div>
+            <div class="counter"><div><i class="fas fa-user-astronaut"></i> 在线玩家</div><div class="counter-number" id="onlineCounterHome">2459</div></div>
         </div>
-        <div class="newsletter">
-            <h3><i class="fas fa-envelope-open-text"></i> 不要错过技术 & 福利</h3>
-            <p>请在爱玩推币机的频道里发表，经审核后会来到官网展示</p>
-            <div class="input-group">
-                <input type="email" placeholder="您的电子邮箱" id="emailInputHome">
-                <button class="btn-primary" id="subscribeBtnHome"><i class="fas fa-paper-plane"></i> 订阅福利</button>
-            </div>
-        </div>
+        <div class="newsletter"><h3><i class="fas fa-envelope-open-text"></i> 不要错过技术 & 福利</h3><p>请在爱玩推币机的频道里发表，经审核后会来到官网展示</p><div class="input-group"><input type="email" placeholder="您的电子邮箱" id="emailInputHome"><button class="btn-primary" id="subscribeBtnHome"><i class="fas fa-paper-plane"></i> 订阅福利</button></div></div>
     </div>
 
-    <!-- 游戏库页面 -->
+    <!-- ========================= 游戏库页面（仅包含全盘传说 + 海洋竞技 + 招商，不含苹果炸弹下载） ========================= -->
     <div id="gamesPage" class="page hidden-page">
-        <div class="section-title">🎮 游戏库 · 热门推荐 🎮</div>
-        <div class="section-sub">点击卡片获取游戏客户端 | 更多精彩业务招商中</div>
+        <div class="section-title">🎮 游戏库 · 游戏下载 🎮</div>
+        <div class="section-sub">点击卡片直接下载/体验游戏客户端</div>
         <div class="games-grid">
-            <!-- 苹果炸弹卡片 -->
-            <div class="game-card" id="appleBombCard">
-                <div class="game-img" style="background-image: url('apple_bomb.png');"></div>
-                <h3>🍎 苹果炸弹 · 爆破狂欢</h3>
-                <p>经典炸弹人玩法升级，投掷苹果引爆炸裂特效，多人同屏刺激对决！</p>
-                <div class="video-btn" id="biliVideoBtn">
-                    <i class="fab fa-bilibili"></i> 观看宣传视频 (B站)
-                </div>
-                <span class="game-tag">🔥 休闲竞技 · 联机对战</span>
-                <button class="play-btn" id="appleBombBtn"><i class="fas fa-bomb"></i> 联系运营商下载</button>
-            </div>
-
             <!-- 全盘传说 -->
             <div class="game-card" id="legendGameCard">
                 <div class="game-img" style="background-image: url('2.png');"></div>
                 <h3>全盘传说 · 1币畅玩</h3>
                 <p>下载后输入邀请码LZTIVA领168小铁片。首充任意金额找客服再领1000</p>
-                <span class="game-tag">🔥 重磅推荐 · 全平台下载</span>
+                <span class="game-tag">🔥 重磅推荐</span>
                 <button class="play-btn" id="legendDownloadBtn"><i class="fas fa-download"></i> 下载 全盘传说</button>
             </div>
             <!-- 海洋竞技 -->
@@ -545,39 +290,35 @@
                 <span class="game-tag">海洋竞技</span>
                 <button class="play-btn" id="oceanGameBtn">🏄 立即挑战海洋之巅</button>
             </div>
-            
-            <!-- 招商卡片 -->
-            <div class="game-card invest-card">
-                <div class="game-icon"><i class="fas fa-chalkboard-user"></i></div>
-                <h3>合作招商 · 品牌入驻</h3>
-                <p>优质流量扶持，千万玩家曝光，诚邀街机游戏、硬件厂商合作。</p>
-                <span class="game-tag invest-tag">📢 招商专线</span>
-                <button class="play-btn investBtn">📞 联系商务</button>
-            </div>
-            <div class="game-card invest-card">
-                <div class="game-icon"><i class="fas fa-gamepad"></i></div>
-                <h3>开发者联盟 · 联运计划</h3>
-                <p>高分成比例，运营支持，SDK快速接入。</p>
-                <span class="game-tag invest-tag">🤝 联运招商</span>
-                <button class="play-btn investBtn">📧 提交合作</button>
-            </div>
-            <div class="game-card invest-card">
-                <div class="game-icon"><i class="fas fa-trophy"></i></div>
-                <h3>电竞赛事冠名 · 赞助招商</h3>
-                <p>百万级曝光，品牌深度植入。</p>
-                <span class="game-tag invest-tag">🏆 冠名招商</span>
-                <button class="play-btn investBtn">⚡ 获取方案</button>
-            </div>
-            <div class="game-card invest-card">
-                <div class="game-icon"><i class="fas fa-store"></i></div>
-                <h3>线下门店 · 街机加盟</h3>
-                <p>设备供应链 + 运营指导，抢占蓝海市场。</p>
-                <span class="game-tag invest-tag">📍 加盟咨询</span>
-                <button class="play-btn investBtn">📝 登记意向</button>
-            </div>
+            <!-- 招商卡片 仅作合作展示 -->
+            <div class="game-card invest-card"><div class="game-icon"><i class="fas fa-chalkboard-user"></i></div><h3>合作招商 · 品牌入驻</h3><p>优质流量扶持，千万玩家曝光。</p><span class="game-tag invest-tag">📢 招商专线</span><button class="play-btn investBtn">📞 联系商务</button></div>
+            <div class="game-card invest-card"><div class="game-icon"><i class="fas fa-gamepad"></i></div><h3>开发者联盟 · 联运计划</h3><p>高分成比例，运营支持。</p><span class="game-tag invest-tag">🤝 联运招商</span><button class="play-btn investBtn">📧 提交合作</button></div>
+            <div class="game-card invest-card"><div class="game-icon"><i class="fas fa-trophy"></i></div><h3>电竞赛事冠名 · 赞助招商</h3><p>百万级曝光，品牌深度植入。</p><span class="game-tag invest-tag">🏆 冠名招商</span><button class="play-btn investBtn">⚡ 获取方案</button></div>
+            <div class="game-card invest-card"><div class="game-icon"><i class="fas fa-store"></i></div><h3>线下门店 · 街机加盟</h3><p>设备供应链+运营指导。</p><span class="game-tag invest-tag">📍 加盟咨询</span><button class="play-btn investBtn">📝 登记意向</button></div>
         </div>
-        <div style="text-align: center; margin: 20px 0 40px; opacity: 0.7;">
-            <i class="fas fa-handshake"></i> 更多合作请咨询客服QQ 3909103177（运营商）
+        <div style="text-align: center; margin: 20px 0 40px; opacity: 0.7;"><i class="fas fa-handshake"></i> 更多合作请咨询客服QQ 3909103177（运营商）</div>
+    </div>
+
+    <!-- ========================= 苹果炸弹独立页面（单独展示，不含app下载，只有宣传+视频+联系运营商） ========================= -->
+    <div id="applePage" class="page hidden-page">
+        <div class="section-title">🍎 苹果炸弹 · 爆破狂欢 🍎</div>
+        <div class="section-sub">全新炸弹人大乱斗，投掷苹果引爆全场！</div>
+        <div style="max-width: 700px; margin: 0 auto;">
+            <div class="game-card" style="cursor: default; margin-bottom: 30px;">
+                <div class="game-img" style="background-image: url('apple_bomb.png'); height: 220px;"></div>
+                <h3 style="font-size: 2rem;">苹果炸弹 · 联机对决</h3>
+                <p style="font-size: 1rem;">经典炸弹人玩法革新，投掷苹果、香蕉炸弹，最多支持4人同屏乱斗。炫酷爆炸特效，数十种道具，和好友一起引爆欢乐！</p>
+                <div class="video-btn" id="appleBiliBtn" style="margin: 20px auto; width: 80%;">
+                    <i class="fab fa-bilibili"></i> 观看官方宣传视频 (B站)
+                </div>
+                <div class="game-tag" style="margin-top: 12px;">🔥 休闲竞技 · 即将上线</div>
+                <button class="play-btn" id="appleContactBtn" style="margin-top: 28px; background: #f5b04220;"><i class="fas fa-qq"></i> 联系运营商获取测试资格</button>
+            </div>
+            <div style="text-align: center; background: #0e1028; border-radius: 48px; padding: 24px; margin: 20px 0;">
+                <i class="fas fa-gamepad" style="font-size: 2rem; color: #f5b042;"></i>
+                <p style="margin-top: 10px;">苹果炸弹独立运营通道 | 客服QQ : 3909103177</p>
+                <small>添加好友备注“苹果炸弹”领取独家礼包</small>
+            </div>
         </div>
     </div>
 
@@ -593,37 +334,23 @@
 </div>
 
 <script>
-    // 页面切换逻辑
+    // 获取页面元素
     const homePage = document.getElementById('homePage');
     const gamesPage = document.getElementById('gamesPage');
+    const applePage = document.getElementById('applePage');
     const navHome = document.getElementById('nav-home');
     const navGames = document.getElementById('nav-games');
     const navApple = document.getElementById('nav-apple');
     const navEvent = document.getElementById('nav-event');
     const navJoin = document.getElementById('nav-join');
     
-    function showHome() { homePage.classList.remove('hidden-page'); gamesPage.classList.add('hidden-page'); }
-    function showGames() { homePage.classList.add('hidden-page'); gamesPage.classList.remove('hidden-page'); }
-    // 苹果炸弹选项: 切换到游戏库，并滚动到苹果炸弹卡片位置
-    function focusAppleBomb() {
-        showGames();
-        setTimeout(() => {
-            const appleCard = document.getElementById('appleBombCard');
-            if(appleCard) {
-                appleCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                appleCard.style.transition = '0.3s';
-                appleCard.style.boxShadow = '0 0 0 2px #f5b042, 0 0 0 6px rgba(245,176,66,0.3)';
-                setTimeout(() => { appleCard.style.boxShadow = ''; }, 1500);
-                showMessage("🍎 苹果炸弹·联系运营商QQ 3909103177 获取安装包及福利");
-            } else {
-                showMessage("苹果炸弹卡片加载中", true);
-            }
-        }, 150);
-    }
+    function showHome() { homePage.classList.remove('hidden-page'); gamesPage.classList.add('hidden-page'); applePage.classList.add('hidden-page'); }
+    function showGames() { homePage.classList.add('hidden-page'); gamesPage.classList.remove('hidden-page'); applePage.classList.add('hidden-page'); }
+    function showApple() { homePage.classList.add('hidden-page'); gamesPage.classList.add('hidden-page'); applePage.classList.remove('hidden-page'); showMessage("🍎 苹果炸弹独立专区，点击视频或联系运营商获取最新情报"); }
     
     navHome.addEventListener('click', (e) => { e.preventDefault(); showHome(); showMessage("🏠 返回首页"); });
-    navGames.addEventListener('click', (e) => { e.preventDefault(); showGames(); showMessage("🎮 游戏库·苹果炸弹/全盘传说/海洋竞技"); });
-    navApple.addEventListener('click', (e) => { e.preventDefault(); focusAppleBomb(); });
+    navGames.addEventListener('click', (e) => { e.preventDefault(); showGames(); showMessage("🎮 游戏库：全盘传说 & 海洋竞技 官方下载通道"); });
+    navApple.addEventListener('click', (e) => { e.preventDefault(); showApple(); });
     navEvent.addEventListener('click', (e) => { e.preventDefault(); showMessage("⚡ 赛事即将开启，详情关注客服QQ 3909103177"); });
     navJoin.addEventListener('click', (e) => { e.preventDefault(); showMessage("👑 会员系统敬请期待"); });
 
@@ -637,43 +364,45 @@
     function copyToClipboard(text, successMsg) {
         navigator.clipboard.writeText(text).then(() => showMessage(successMsg || `✅ 已复制: ${text}`)).catch(() => showMessage("复制失败", true));
     }
-    // 客服复制
+    
+    // 客服群组复制 (首页)
     const contactQQ = document.getElementById('contactQQItemHome');
     const contactGroup = document.getElementById('groupQQItemHome');
     if(contactQQ) contactQQ.addEventListener('click', () => copyToClipboard('3909103177', '✅ 客服QQ 3909103177 已复制，运营商直达'));
     if(contactGroup) contactGroup.addEventListener('click', () => copyToClipboard('1055102055', '🎮 群号 1055102055 已复制'));
 
-    // 苹果炸弹: B站视频按钮跳转 + 运营商下载按钮
-    const biliVideoBtn = document.getElementById('biliVideoBtn');
+    // 苹果炸弹页面: B站视频按钮 & 联系运营商
+    const appleBiliBtn = document.getElementById('appleBiliBtn');
     const BILI_VIDEO_URL = 'https://www.bilibili.com/video/BV1gYR5BbEUY/?spm_id_from=333.1387.homepage.video_card.click&vd_source=3b9827ec99a9b36b463caf118b63361c';
-    if(biliVideoBtn) {
-        biliVideoBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            window.open(BILI_VIDEO_URL, '_blank');
-            showMessage("📺 正在打开B站「苹果炸弹」宣传视频");
+    if(appleBiliBtn) {
+        appleBiliBtn.addEventListener('click', (e) => { e.stopPropagation(); window.open(BILI_VIDEO_URL, '_blank'); showMessage("📺 正在打开B站「苹果炸弹」宣传视频"); });
+    }
+    const appleContactBtn = document.getElementById('appleContactBtn');
+    if(appleContactBtn) {
+        appleContactBtn.addEventListener('click', () => copyToClipboard('3909103177', '🍎 苹果炸弹运营商客服QQ 3909103177 已复制，添加好友获取测试资格及专属礼包'));
+    }
+    // 苹果页面卡片整体点击也跳转复制（为了避免误触，只让按钮触发 但整体也可以引导）
+    const appleCardContainer = document.querySelector('#applePage .game-card');
+    if(appleCardContainer) {
+        appleCardContainer.addEventListener('click', (e) => {
+            if(e.target === appleContactBtn || appleContactBtn.contains(e.target) || e.target === appleBiliBtn || appleBiliBtn.contains(e.target)) return;
+            copyToClipboard('3909103177', '🍎 苹果炸弹客服QQ 3909103177，添加好友了解游戏动态');
         });
     }
-    const appleCard = document.getElementById('appleBombCard');
-    const appleBtn = document.getElementById('appleBombBtn');
-    function contactAppleOperator() {
-        copyToClipboard('3909103177', '🍎 苹果炸弹运营商客服QQ 3909103177 已复制，添加好友获取游戏安装包及专属兑换码');
-    }
-    if(appleBtn) appleBtn.addEventListener('click', (e) => { e.stopPropagation(); contactAppleOperator(); });
-    if(appleCard) appleCard.addEventListener('click', (e) => { if(e.target === appleBtn || appleBtn.contains(e.target) || e.target === biliVideoBtn || biliVideoBtn.contains(e.target)) return; contactAppleOperator(); });
 
-    // 全盘传说
+    // 游戏库: 全盘传说下载
     const legendBtn = document.getElementById('legendDownloadBtn');
     const legendCard = document.getElementById('legendGameCard');
     if(legendBtn) legendBtn.addEventListener('click', (e) => { e.stopPropagation(); window.open('https://download.ttl718.com/', '_blank'); showMessage("🔥 前往全盘传说下载页"); });
     if(legendCard) legendCard.addEventListener('click', (e) => { if(e.target === legendBtn || legendBtn.contains(e.target)) return; window.open('https://download.ttl718.com/', '_blank'); });
     
-    // 海洋竞技
+    // 海洋竞技跳转
     const oceanBtn = document.getElementById('oceanGameBtn');
     const oceanCardElem = document.getElementById('oceanGameCard');
     if(oceanBtn) oceanBtn.addEventListener('click', (e) => { e.stopPropagation(); window.open('https://app.gxgenda.cn/dw', '_blank'); showMessage("🌊 前往海洋竞技"); });
     if(oceanCardElem) oceanCardElem.addEventListener('click', (e) => { if(e.target === oceanBtn || oceanBtn.contains(e.target)) return; window.open('https://app.gxgenda.cn/dw', '_blank'); });
     
-    // 招商卡片
+    // 招商卡片 (统一复制客服QQ)
     const investBtns = document.querySelectorAll('.investBtn');
     const investCardsAll = document.querySelectorAll('.invest-card');
     investBtns.forEach(btn => {
@@ -683,7 +412,7 @@
         card.addEventListener('click', (e) => { if(e.target.tagName === 'BUTTON') return; copyToClipboard('3909103177', '📢 商务合作请添加客服QQ 3909103177'); });
     });
 
-    // 首页在线人数动态
+    // 首页在线人数
     let onlineHome = 2459;
     const counterSpan = document.getElementById('onlineCounterHome');
     setInterval(() => {
@@ -706,22 +435,14 @@
         emailInp.value = '';
     });
     
-    // ------------------- 社交图标跳转 -------------------
-    // B站图标跳转（保持不变）
+    // 社交图标
     const biliIcon = document.getElementById('biliIconFooter');
     if(biliIcon) biliIcon.addEventListener('click', () => window.open('https://space.bilibili.com/3546689344375658', '_blank'));
-    
-    // 抖音图标跳转：指定链接
     const tiktokIcon = document.getElementById('tiktokIconFooter');
     const DOUYIN_URL = 'https://www.douyin.com/user/MS4wLjABAAAACgLr89fukya8N5oMjUCOz5ARVprWM3lwCUgeQikqqdQ';
-    if(tiktokIcon) {
-        tiktokIcon.addEventListener('click', (e) => {
-            e.stopPropagation();
-            window.open(DOUYIN_URL, '_blank');
-            showMessage("📱 正在打开「爱玩推币机」抖音主页");
-        });
-    }
+    if(tiktokIcon) tiktokIcon.addEventListener('click', (e) => { e.stopPropagation(); window.open(DOUYIN_URL, '_blank'); showMessage("📱 正在打开「爱玩推币机」抖音主页"); });
     
+    // 默认首页
     showHome();
 </script>
 </body>
